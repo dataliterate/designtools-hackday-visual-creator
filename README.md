@@ -14,14 +14,11 @@ Friday, April 8th + Saturday, April 9th 2016
 
 ## Location
 precious design studio, Völckersstrasse 14-20, 22765 Hamburg
+[Directions]
 
 ## Apply
-The hackathon has a capcity of max. 30 participants.
-Apply here (button) -> http://www.typeform.com/
-
-## Scholarships
-We offer 3 sponsored scholarships for people from abroad. We cover flights, hotel and accommodation.
-Apply here (button) -> http://www.typeform.com/
+The hackathon has a capcity of max. 30 participants. We offer 3 sponsored scholarships for people from abroad. We cover flights, hotel and accommodation.
+- Apply here (button) -> http://www.typeform.com/
 
 ## Schedule
 - Friday Morning: Introduction (open for public, max 80 people)
@@ -46,8 +43,8 @@ Apply here (button) -> http://www.typeform.com/
 ## Coaches
 - Ale Munoz, Bohemian Coding
 - Sam Deane, Bohemian Coding
-- Michael Schieben, precious design studio (TBC)
 - Wolfgang Knebel, NumberFour (TBC)
+- Michael Schieben, precious design studio (TBC)
 
 ## Host & Organizer
 precious (logo)
@@ -62,5 +59,6 @@ Bohemian Coding (logo)
 hackathon@precious-forever.com
 
 ## Code of Conduct
-could be an idea…
-http://2014.jsconf.eu/code-of-conduct.html
+- could be an idea…
+- http://2014.jsconf.eu/code-of-conduct.html
+- http://hamburg-hackathon.de/hackathon/
