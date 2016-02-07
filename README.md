@@ -44,7 +44,7 @@ The hackathon has a capcity of max. 30 participants. We offer 3 sponsored schola
 - Ale Munoz, Bohemian Coding
 - Sam Deane, Bohemian Coding
 - Wolfgang Knebel, NumberFour (TBC)
-- Michael Schieben, precious design studio (TBC)
+- Michael Schieben, precious design studio
 
 ## Host & Organizer
 precious (logo)
