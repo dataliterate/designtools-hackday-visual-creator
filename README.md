@@ -60,5 +60,6 @@ hackathon@precious-forever.com
 
 ## Code of Conduct
 - could be an idea…
+- https://github.com/mozilla/participation-org/blob/master/global_events/leadership_summit/code-of-conduct.md
 - http://2014.jsconf.eu/code-of-conduct.html
 - http://hamburg-hackathon.de/hackathon/
