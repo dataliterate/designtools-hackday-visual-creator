@@ -1,11 +1,9 @@
 # Design Tools Hack Days: Sketch Plugins
 
-```
-Key Visual
-[idea: show an interactive, animated "exploding" Sketch App icon ;-)]
-- http://www.rcersatzteile.de/media/image/t623_explosionszeichnung.png
-- http://image5-cdn.n24.de/image/4014468/2/large16x9/q4s/so-haben-sie-autos-noch-nie-gesehen-gallerypicture-1_900x510.jpg
-```
+—  
+key visual idea: show an interactive, animated "exploding" Sketch App icon ;-)
+![](http://www.rcersatzteile.de/media/image/t623_explosionszeichnung.png)
+![](http://image5-cdn.n24.de/image/4014468/2/large16x9/q4s/so-haben-sie-autos-noch-nie-gesehen-gallerypicture-1_900x510.jpg)
 
 ## What
 With this first edition of the event, we want to explore the potential of Sketch App Plugins. April 8-9th 2016 in Hamburg, Germany.
