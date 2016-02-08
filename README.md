@@ -1,4 +1,4 @@
-# Design Tools Hackdays: Sketch Plugins
+# Design Tools Hackday: Sketch Plugins
 
 —  
 key visual idea: show an interactive, animated "exploding" Sketch App icon ;-)
