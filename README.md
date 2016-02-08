@@ -39,18 +39,18 @@ Application criteria:
 ```
 
 ## Schedule
-- Friday Morning: Introduction [open for public, max 80 people]
+- **Friday, 10:00 (10am):** Introduction [open for public, max 80 people]
   - Good Morning
   - Introduction Sponsor (why the sketch ecosystem makes sense…)
   - Introduction Sketch/API by Bohemian Coding
-- Friday and Saturday: Hacking (max 20 attendees?)
+- **Friday & Saturday:** Hacking (max 20 attendees?)
   - coaches available
   - regular standup meetings
-- Saturday Afternoon: Presentation (open for public, max 80 people)
+- **Saturday, 18:00 (6pm):** Presentation (open for public, max 80 people)
   - idea: “open studio" – people can walk around and learn about the hacks
   - presentation: every team pitches their hack
-  - jury selects a winner hack and hand over a price
-- Saturday Evening: Closing Party (open for public, max 80 people)
+  - jury selects a winner hack and hand over a price (if available)
+- **Saturday, 20:00 (8pm):** Closing Party (open for public, max 80 people)
 
 ## Prices
 [do we need to list available prices? i think the event is attractive enough on its own – i personally don't like if prices are too *loud* in advance…]
