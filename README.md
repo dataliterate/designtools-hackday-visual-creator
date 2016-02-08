@@ -26,8 +26,17 @@ precious design studio, Völckersstrasse 14-20, 22765 Hamburg
 - show studio photos?
 
 ## Apply
-The hackday has a capcity of max. 20 participants. We offer 3 sponsored scholarships for people from abroad. We cover flights, hotel and accommodation.
+The hackday has a capcity of max. 20 participants; our emphasis in the selection process is on participant diversity – in order to build great things, we want to establish a well balanced blend of people and strengths. We offer 3 sponsored scholarships for people from abroad. We cover flights, hotel and accommodation.
 - Apply here (button) -> http://www.typeform.com/
+
+```
+Application criteria:
+- short bio (who are you, what do you do, where do you come from)
+- motivation to join
+- product/software work examples
+- former sketch plugins
+- to the hackdays I bring …
+```
 
 ## Schedule
 - Friday Morning: Introduction [open for public, max 80 people]
