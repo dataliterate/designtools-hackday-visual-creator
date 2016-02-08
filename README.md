@@ -32,10 +32,10 @@ The hackday has a capcity of max. 20 participants; our emphasis in the selection
 ```
 Application criteria:
 - short bio (who are you, what do you do, where do you come from)
-- motivation to join
-- product/software work examples
-- former sketch plugins
+- your website/online portfolio
+- your motivation to join
 - to the hackdays I bring …
+- up to 3 product/software work examples (eg former sketch plugins)
 ```
 
 ## Schedule
