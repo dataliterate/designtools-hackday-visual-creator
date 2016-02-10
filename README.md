@@ -1,4 +1,4 @@
-# Design Tools Hackday: Extensions for Sketch App
+# Designtools Hackday: Extensions for Sketch App
 
 ## What
 With this first edition of the event, we want to explore the potential of Sketch App Extensions. April 8-9th 2016 in Hamburg, Germany.
