@@ -1,16 +1,16 @@
-# Designtools Hackday: Extensions for Sketch App
+# Designtools Hackday: Plugins for Sketch App
 
 ## What
 With this first edition of the event, we want to explore the potential of Sketch App Extensions. April 8-9th 2016 in Hamburg, Germany.
 
 ## Why
-As designers, the tools we use do shape us and our work. Thus we need to shape our tools and workflows. We're leaving yesterday's design software monoliths behind and explore the bright future of complementary design tools. This is the Era of the Design Toolchain.
+As designers, the tools we use do shape us and our work. Thus we need to shape our tools and workflows. We’re leaving yesterday’s design software monoliths behind and explore the bright future of complementary design tools. This is the Era of the Design Toolchain.
 
 ## How
-Within two days, we will discuss, conceive, develop, hack and iterate. And in between, we'll have great food and coffee. We'll do all this in a comfy design studio environment.
+Within two days, we will discuss, conceive, develop, hack and iterate. And in between, we’ll have great food and coffee. We’ll do all this in a comfy design studio environment.
 
 ## Who
-No matter if you're a designer, a programmer, an API architect or a _product guy_, you're more than welcome to join us. We can't wait to hear about your ideas and meet you eventually.
+No matter if you’re a designer, a programmer, an API architect or a _product guy_, you’re more than welcome to join us. We can’t wait to hear about your ideas and meet you eventually.
 
 ## Date
 Friday, April 8th + Saturday, April 9th 2016
