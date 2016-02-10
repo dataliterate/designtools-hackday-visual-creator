@@ -1,7 +1,7 @@
-# Design Tools Hackday: Sketch Plugins
+# Design Tools Hackday: Extensions for Sketch App
 
 ## What
-With this first edition of the event, we want to explore the potential of Sketch App Plugins. April 8-9th 2016 in Hamburg, Germany.
+With this first edition of the event, we want to explore the potential of Sketch App Extensions. April 8-9th 2016 in Hamburg, Germany.
 
 ## Why
 As designers, the tools we use do shape us and our work. Thus we need to shape our tools and workflows. We're leaving yesterday's design software monoliths behind and explore the bright future of complementary design tools. This is the Era of the Design Toolchain.
@@ -27,10 +27,10 @@ The hackday has a capcity of max. 20 participants; our emphasis in the selection
 ```
 Application criteria:
 - short bio (who are you, what do you do, where do you come from, your website)
-- up to 3 product/software work examples (eg former sketch plugins)
+- up to 3 product/software work examples (eg former Sketch Extensions)
 - your motivation to join
 - to the hackdays I bring …
-- existing ideas for Sketch Plugins
+- existing ideas for Sketch Extensions
 ```
 
 ## Schedule
@@ -85,7 +85,7 @@ Bohemian Coding, the makers of Sketch App provide us with their outstanding API 
 hackathon@precious-forever.com
 
 ## Copyright (how do we integrate?)
-we need a short disclaimer: IP of results remains copyright of authors, but we kindly ask to share all created plugins with the community
+we need a short disclaimer: IP of results remains copyright of authors, but we kindly ask to share all created extensions with the community
 
 ## Code of Conduct (how do we integrate?)
 - could be an idea…
