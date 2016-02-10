@@ -1,10 +1,5 @@
 # Design Tools Hackday: Sketch Plugins
 
-—  
-key visual idea: show an interactive, animated "exploding" Sketch App icon ;-)
-![](http://www.rcersatzteile.de/media/image/t623_explosionszeichnung.png)
-![](http://image5-cdn.n24.de/image/4014468/2/large16x9/q4s/so-haben-sie-autos-noch-nie-gesehen-gallerypicture-1_900x510.jpg)
-
 ## What
 With this first edition of the event, we want to explore the potential of Sketch App Plugins. April 8-9th 2016 in Hamburg, Germany.
 
@@ -31,11 +26,11 @@ The hackday has a capcity of max. 20 participants; our emphasis in the selection
 
 ```
 Application criteria:
-- short bio (who are you, what do you do, where do you come from)
-- your website/online portfolio
+- short bio (who are you, what do you do, where do you come from, your website)
+- up to 3 product/software work examples (eg former sketch plugins)
 - your motivation to join
 - to the hackdays I bring …
-- up to 3 product/software work examples (eg former sketch plugins)
+- existing ideas for Sketch Plugins
 ```
 
 ## Schedule
@@ -52,35 +47,47 @@ Application criteria:
   - jury selects a winner hack and hand over a price (if available)
 - **Saturday, 20:00 (8pm):** Closing Party (open for public, max 80 people)
 
-## Prices
-[do we need to list available prices? i think the event is attractive enough on its own – i personally don't like if prices are too *loud* in advance…]
-
 ## Jury
-- Ale Munoz, Bohemian Coding
-- Sam Deane, Bohemian Coding
-- Marco Boerries, NumberFour AG
-- Christophe Stoll, precious design studio
-- [who else???]
+Though we believe all hacks will be best, the jury will pick the best of the best.
+- Ale Munoz, [Bohemian Coding](http://www.sketchapp.com/)
+- Cat Noone, [ubercreative product design lab](http://ubercreative.me/) (TBC)
+- Marco Boerries, [NumberFour AG](http://www.numberfour.eu/)
+- Inken Petersen, [Fluid for Sketch/Iris](http://heyimcat.com/) (TBC)
 
 ## Coaches
+Helping you with all your API, research and design related issues and questions
 - Ale Munoz, Bohemian Coding
 - Sam Deane, Bohemian Coding
+- Florie Salnot, precious design studio (TBC)
 - Wolfgang Knebel, NumberFour (TBC)
-- Michael Schieben, precious design studio
+- Silke Krieg, Freelance Designer (TBC)
+
+## Team
+Making sure you have a great and productive time. Ask anything!
+- Aisha Adamu
+- Svenja Peters
+- Michael Schieben
+- Christophe Stoll
 
 ## Host & Organizer
-precious (logo)
+**precious (logo)**
+precious design studio helps innovators to shape meaningful products and services that people love to interact with. Makers of [Sketch Data Populator](https://github.com/preciousforever/sketch-data-populator).
 
 ## Sponsor
-NumberFour AG (logo)
+**NumberFour AG (logo)**
+NumberFour AG is working on a platform to help small businesses run their business by providing dedicated tools and services to turn them into connected companies.
 
-## Partner
-Bohemian Coding (logo)
+## API Partner
+**Bohemian Coding (logo)**
+Bohemian Coding, the makers of Sketch App provide us with their outstanding API and are attending the hackday to support you with all your needs and questions.
 
 ## Get in touch
 hackathon@precious-forever.com
 
-## Code of Conduct
+## Copyright (how do we integrate?)
+we need a short disclaimer: IP of results remains copyright of authors, but we kindly ask to share all created plugins with the community
+
+## Code of Conduct (how do we integrate?)
 - could be an idea…
 - https://github.com/mozilla/participation-org/blob/master/global_events/leadership_summit/code-of-conduct.md
 - http://2014.jsconf.eu/code-of-conduct.html
