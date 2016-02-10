@@ -50,9 +50,9 @@ Application criteria:
 ## Jury
 Though we believe all hacks will be best, the jury will pick the best of the best.
 - Ale Munoz, [Bohemian Coding](http://www.sketchapp.com/)
-- Cat Noone, [ubercreative product design lab](http://ubercreative.me/) (TBC)
+- Cat Noone, [Fluid for Sketch/Iris](http://heyimcat.com/) (TBC)
 - Marco Boerries, [NumberFour AG](http://www.numberfour.eu/)
-- Inken Petersen, [Fluid for Sketch/Iris](http://heyimcat.com/) (TBC)
+- Inken Petersen, [ubercreative product design lab](http://ubercreative.me/) (TBC)
 
 ## Coaches
 Helping you with all your API, research and design related issues and questions
