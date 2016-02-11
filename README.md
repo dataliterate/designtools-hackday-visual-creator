@@ -17,8 +17,6 @@ Friday, April 8th + Saturday, April 9th 2016
 
 ## Location
 precious design studio, Völckersstrasse 14-20, 22765 Hamburg
-- [Directions]
-- show studio photos?
 
 ## Apply
 The hackday has a capcity of max. 20 participants; our emphasis in the selection process is on participant diversity – in order to build great things, we want to establish a well balanced blend of people and strengths. We offer 3 sponsored scholarships for people from abroad. We cover flights, hotel and accommodation.
@@ -38,8 +36,8 @@ Application criteria:
   - Good Morning
   - Introduction Sponsor (why the sketch ecosystem makes sense…)
   - Introduction Sketch/API by Bohemian Coding
-- **Friday & Saturday:** Hacking (max 20 attendees?)
-  - coaches available
+- **Friday & Saturday:** Hacking (max 20 attendees)
+  - facilitators available
   - regular standup meetings
 - **Saturday, 18:00 (6pm):** Presentation (open for public, max 80 people)
   - idea: “open studio" – people can walk around and learn about the hacks
@@ -50,11 +48,11 @@ Application criteria:
 ## Jury
 Though we believe all hacks will be best, the jury will pick the best of the best.
 - Ale Munoz, [Bohemian Coding](http://www.sketchapp.com/)
-- Cat Noone, [Fluid for Sketch/Iris](http://heyimcat.com/) (TBC)
+- Cat Noone, [Fluid for Sketch/Iris](http://heyimcat.com/) (confirmed)
 - Marco Boerries, [NumberFour AG](http://www.numberfour.eu/)
 - Inken Petersen, [ubercreative product design lab](http://ubercreative.me/) (TBC)
 
-## Coaches
+## Facilitators
 Helping you with all your API, research and design related issues and questions
 - Ale Munoz, Bohemian Coding
 - Sam Deane, Bohemian Coding
@@ -73,9 +71,9 @@ Making sure you have a great and productive time. Ask anything!
 **precious (logo)**
 precious design studio helps innovators to shape meaningful products and services that people love to interact with. Makers of [Sketch Data Populator](https://github.com/preciousforever/sketch-data-populator).
 
-## Sponsor
+## Sponsoring Partner
 **NumberFour AG (logo)**
-NumberFour AG is working on a platform to help small businesses run their business by providing dedicated tools and services to turn them into connected companies.
+NumberFour AG is working on a platform to help small businesses run their business by providing dedicated tools and services to turn them into connected companies. The question how designers and developers work together and which tools they use plays a big role.
 
 ## API Partner
 **Bohemian Coding (logo)**
@@ -84,11 +82,8 @@ Bohemian Coding, the makers of Sketch App provide us with their outstanding API 
 ## Get in touch
 hackathon@precious-forever.com
 
-## Copyright (how do we integrate?)
-we need a short disclaimer: IP of results remains copyright of authors, but we kindly ask to share all created extensions with the community
+## Intellectual Property 
+All results will remain the intellectual property of their makers. If you form groups, we will gladly help you to find adequate solutions. Nevertheless, we ask you to publish your work on GitHub with the world so the design community can benefit and ultimately make your work even better by contributing.
 
-## Code of Conduct (how do we integrate?)
-- could be an idea…
-- https://github.com/mozilla/participation-org/blob/master/global_events/leadership_summit/code-of-conduct.md
-- http://2014.jsconf.eu/code-of-conduct.html
-- http://hamburg-hackathon.de/hackathon/
+## Code of Conduct
+Everybody involved in the Designtools Hackday agrees on being nice and respectful towards each other – Organizer, Jury, Faciliators and attendees alike will do their best to turn the event into a great experience for every single person, no matter who they are or where they come from. Any form of disrespectful behavior (any kind of harrassement, sexist language or imagery, false accusation) will lead to an exclusion of the event at the discretion of the hackday organizers.
