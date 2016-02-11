@@ -80,7 +80,7 @@ NumberFour AG is working on a platform to help small businesses run their busine
 Bohemian Coding, the makers of Sketch App provide us with their outstanding API and are attending the hackday to support you with all your needs and questions.
 
 ## Get in touch
-hackathon@precious-forever.com
+hackday@precious-forever.com
 
 ## Intellectual Property 
 All results will remain the intellectual property of their makers. If you form groups, we will gladly help you to find adequate solutions. Nevertheless, we ask you to publish your work on GitHub with the world so the design community can benefit and ultimately make your work even better by contributing.
