@@ -1,0 +1,212 @@
+//**************************** Type ****************************//
+
+body {
+  font-family: "DIN Round Pro", "DIN", Helvetica, Arial, sans-serif;
+  color: $black;
+  font-weight: 400;
+  font-size: 2em;
+  line-height: 1.4em;
+}
+
+//**************************** Type: Semantic ****************************//
+
+img {
+  width: 100%;
+}
+
+h1  {
+  font-size: 1.5em;
+  color: $dominant;
+
+  margin-bottom: 1em;
+}
+
+h1 + .text--subheadline {
+  margin-top: -1em;
+  margin-bottom: 1.75em;
+}
+
+h1.text--title  {
+  font-size: 2.4em;
+  line-height: 1.1em;
+  font-weight: 100;
+  color: $black;
+  margin: 0;
+}
+
+h2  {
+  font-size: 1.05em;
+  color: $dominant;
+
+  margin-bottom: .2em;
+  margin-top: 1em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h3  {
+  font-size: 1em;
+}
+
+p {
+  margin-bottom: .75em;
+
+  &:last-child  {
+    margin-bottom: 0;
+  }
+}
+a {
+  color: inherit;
+}
+
+//**************************** Type: Visual ****************************//
+
+.text--center {
+  text-align: center;
+}
+
+.text--big  {
+  font-size: 1.4em;
+  line-height: 1.3em;
+}
+
+.text--small  {
+  font-size: .8em;
+  line-height: 1.45em;
+}
+
+p.text--small {
+  margin-bottom: .5em;
+}
+
+.text--white  {
+  color: $white;
+}
+
+.text--grey {
+  color: $grey;
+}
+
+a.text--invisiblelink {
+  text-decoration: inherit;
+}
+
+
+//**************************** Form ****************************//
+
+.button {
+  display: inline-block;;
+
+  //font-weight: 500;
+  text-decoration: none;
+
+  background-color: $dominant;
+  color: $white;
+
+  padding: .3em .5em;
+  padding-top: .2em;
+  border-radius: .25em;
+
+  margin-left: -.25em;
+  margin-top: 1em;
+}
+
+//**************************** Grid ****************************//
+
+.g__center  {
+  width: 100%;
+  max-width: $unit_big * 14;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.g__container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+@mixin gutter {
+  padding-left: $unit_small;
+  padding-right: $unit_small;
+
+}
+
+.g__3-12  {
+  flex: 0 0 25%;
+  @include gutter;
+}
+
+.g__4-12  {
+  flex: 0 0 33.333%;
+  @include gutter;
+}
+
+.g__6-12  {
+  flex: 0 0 50%;
+  @include gutter;
+}
+
+.g__8-12  {
+  flex: 0 0 66.6666%;
+  @include gutter;
+}
+
+.g__12-12  {
+  flex: 0 0 100%;
+  @include gutter;
+}
+
+@media (max-width: 800px) {
+  .g__3-12, .g__4-12, .g__6-12, .g__8-12  {
+    flex: 0 0 100%;
+    @include gutter;
+  }
+}
+
+//**************************** Boxes ****************************//
+
+.box--background--white {
+  background-color: $white;
+}
+
+.box--background--grey {
+  background-color: $grey_xlight;
+}
+
+.box--background--dominant  {
+  background-color: $dominant;
+}
+
+.box--imgBorder--white  {
+  img {
+    border: (1rem/4) solid $white;
+    box-sizing: content-box;
+  }
+}
+
+.box--border  {
+  border: (1rem/3) solid $dominant;
+}
+
+.box--padding  {
+  padding-top: $unit_small;
+  padding-bottom: $unit_small;
+}
+
+.box--paddingBig  {
+  padding-top: $unit;
+  padding-bottom: $unit;
+}
+
+.box--spacing {
+  padding-top: $unit;
+  padding-bottom: $unit;
+}
+
+.box--spacingBig {
+  padding-top: $unit_big;
+  padding-bottom: $unit_big;
+}

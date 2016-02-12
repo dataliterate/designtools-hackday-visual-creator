@@ -1,0 +1,506 @@
+html {
+  box-sizing: border-box;
+}
+
+*, ::after, ::before {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  appearance: checkbox;
+}
+
+input[type=radio] {
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+  appearance: radio;
+}
+
+ul, ol {
+  margin-left: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+html {
+  font-size: 10px;
+}
+
+/*  Syntax Quick Reference
+  --------------------------
+  column($ratios: 1, $offset: 0, $cycle: 0, $uncycle: 0, $gutter: $jeet-gutter)
+  span($ratio: 1, $offset: 0)
+  shift($ratios: 0, $col_or_span: column, $gutter: $jeet-gutter)
+  unshift()
+  edit()
+  center($max_width: 1410px, $pad: 0)
+  stack($pad: 0, $align: false)
+  unstack()
+  align($direction: both)
+  cf()
+*/
+/**
+ * Grid settings.
+ * All values are defaults and can therefore be easily overidden.
+ */
+/**
+ * List functions courtesy of the wonderful folks at Team Sass.
+ * Check out their awesome grid: Singularity.
+ */
+/**
+ * Get  percentage from a given ratio.
+ * @param {number} [$ratio=1] - The column ratio of the element.
+ * @returns {number} - The percentage value.
+ */
+/**
+ * Work out the column widths based on the ratio and gutter sizes.
+ * @param {number} [$ratios=1] - The column ratio of the element.
+ * @param {number} [$gutter=$jeet-gutter] - The gutter for the column.
+ * @returns {list} $width $gutter - A list containing the with and gutter for the element.
+ */
+/**
+ * Get the set layout direction for the project.
+ * @returns {string} $direction - The layout direction.
+ */
+/**
+ * Replace a specified list value with a new value (uses built in set-nth() if available)
+ * @param {list} $list - The list of values you want to alter.
+ * @param {number} $index - The index of the list item you want to replace.
+ * @param {*} $value - The value you want to replace $index with.
+ * @returns {list} $list - The list with the value replaced or removed.
+ * @warn if an invalid index is supplied.
+ */
+/**
+ * Reverse a list (progressively enhanced for Sass 3.3)
+ * @param {list} $list - The list of values you want to reverse.
+ * @returns {list} $result - The reversed list.
+ */
+/**
+ * Get the opposite direction to a given value.
+ * @param {string} $dir - The direction you want the opposite of.
+ * @returns {string} - The opposite direction to $dir.
+ * @warn if an incorrect string is provided.
+ */
+/**
+ * Style an element as a column with a gutter.
+ * @param {number} [$ratios=1] - A width relative to its container as a fraction.
+ * @param {number} [$offset=0] - A offset specified as a fraction (see $ratios).
+ * @param {number} [$cycle=0] - Easily create an nth column grid where $cycle equals the number of columns.
+ * @param {number} [$uncycle=0] - Undo a previous cycle value to allow for a new one.
+ * @param {number} [$gutter=$jeet-gutter] - Specify the gutter width as a percentage of the containers width.
+ */
+/**
+ * An alias for the column mixin.
+ * @param [$args...] - All arguments get passed through to column().
+ */
+/**
+ * Get the width of a column and nothing else.
+ * @param {number} [$ratios=1] - A width relative to its container as a fraction.
+ * @param {number} [$gutter=$jeet-gutter] - Specify the gutter width as a percentage of the containers width.
+ */
+/**
+ * Get the gutter size of a column and nothing else.
+ * @param {number} [ratios=1] - A width relative to its container as a fraction.
+ * @param {number} [gutter=jeet.gutter] - Specify the gutter width as a percentage of the containers width.
+ */
+/**
+ * An alias for the column-width function.
+ * @param [$args...] - All arguments get passed through to column().
+ */
+/**
+ * An alias for the column-gutter function.
+ * @param [$args...] - All arguments get passed through to column().
+ */
+/**
+ * Style an element as a column without any gutters for a seamless row.
+ * @param {number} [$ratios=1] - A width relative to its container as a fraction.
+ * @param {number} [$offset=0] - A offset specified as a fraction (see $ratios).
+ * @param {number} [cycle=0] - Easily create an nth column grid where cycle equals the number of columns.
+ * @param {number} [uncycle=0] - Undo a previous cycle value to allow for a new one.
+ */
+/**
+ * Reorder columns without altering the HTML.
+ * @param {number} [$ratios=0] - Specify how far along you want the element to move.
+ * @param {string} [$col-or-span=column] - Specify whether the element has a gutter or not.
+ * @param {number} [$gutter=$jeet-gutter] - Specify the gutter width as a percentage of the containers width.
+ */
+/**
+ * Reset an element that has had shift() applied to it.
+ */
+/**
+ * View the grid and its layers for easy debugging.
+ * @param {string} [$color=black] - The background tint applied.
+ * @param {boolean} [$important=false] - Whether to apply the style as !important.
+ */
+/**
+ *  Alias for edit().
+ */
+/**
+ * Horizontally center an element.
+ * @param {number} [$max-width=1410px] - The max width the element can be.
+ * @param {number} [$pad=0] - Specify the element's left and right padding.
+ */
+/**
+ * Uncenter an element.
+ */
+/**
+ * Stack an element so that nothing is either side of it.
+ * @param {number} [$pad=0] - Specify the element's left and right padding.
+ * @param {boolean/string} [$align=false] - Specify the text align for the element.
+ */
+/**
+ * Unstack an element.
+ */
+/**
+ * Center an element on either or both axes.
+ * @requires A parent container with relative positioning.
+ * @param {string} [$direction=both] - Specify which axes to center the element on.
+ */
+/**
+ * Apply a clearfix to an element.
+ */
+body {
+  font-family: "DIN Round Pro", "DIN", Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+  font-weight: 400;
+  font-size: 2em;
+  line-height: 1.4em;
+}
+
+img {
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.5em;
+  color: #F7C873;
+  margin-bottom: 1em;
+}
+
+h1 + .text--subheadline {
+  margin-top: -1em;
+  margin-bottom: 1.75em;
+}
+
+h1.text--title {
+  font-size: 2.4em;
+  line-height: 1.1em;
+  font-weight: 100;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.05em;
+  color: #F7C873;
+  margin-bottom: .2em;
+  margin-top: 1em;
+}
+
+h2:first-child {
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+p {
+  margin-bottom: .75em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--big {
+  font-size: 1.4em;
+  line-height: 1.3em;
+}
+
+.text--small {
+  font-size: .8em;
+  line-height: 1.45em;
+}
+
+p.text--small {
+  margin-bottom: .5em;
+}
+
+.text--white {
+  color: white;
+}
+
+.text--grey {
+  color: gray;
+}
+
+a.text--invisiblelink {
+  text-decoration: inherit;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #F7C873;
+  color: white;
+  padding: .3em .5em;
+  padding-top: .2em;
+  border-radius: .25em;
+  margin-left: -.25em;
+  margin-top: 1em;
+}
+
+.g__center {
+  width: 100%;
+  max-width: 112rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.g__container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.g__3-12 {
+  -webkit-flex: 0 0 25%;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.g__4-12 {
+  -webkit-flex: 0 0 33.333%;
+      -ms-flex: 0 0 33.333%;
+          flex: 0 0 33.333%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.g__6-12 {
+  -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.g__8-12 {
+  -webkit-flex: 0 0 66.6666%;
+      -ms-flex: 0 0 66.6666%;
+          flex: 0 0 66.6666%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.g__12-12 {
+  -webkit-flex: 0 0 100%;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 800px) {
+  .g__3-12, .g__4-12, .g__6-12, .g__8-12 {
+    -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.box--background--white {
+  background-color: white;
+}
+
+.box--background--grey {
+  background-color: #f2f2f2;
+}
+
+.box--background--dominant {
+  background-color: #F7C873;
+}
+
+.box--imgBorder--white img {
+  border: 0.25rem solid white;
+  box-sizing: content-box;
+}
+
+.box--border {
+  border: 0.33333rem solid #F7C873;
+}
+
+.box--padding {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.box--paddingBig {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.box--spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.box--spacingBig {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.m__identity {
+  text-align: center;
+}
+
+.m__identity img {
+  display: inline-block;
+  height: 8rem;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.m__timetable {
+  margin-bottom: 1.5em;
+}
+
+.o__identities--list {
+  display: inline-block;
+  margin-top: 3rem;
+}
+
+.o__identities--list .m__identity {
+  margin-bottom: 3rem;
+}
+
+.o__identities--list .m__identity img {
+  float: left;
+}
+
+.o__identities--list .m__identity .description {
+  height: 8rem;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+.o__identities--people .m__identity img {
+  border-radius: 50%;
+}
+
+.o__block {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+article {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+  *zoom: 1;
+}
+
+article:before, article:after {
+  content: '';
+  display: table;
+}
+
+article:after {
+  clear: both;
+}
+
+.o__header img {
+  max-width: 300px;
+}
+
+.o__map {
+  background-image: url("../imgs/map.png");
+  background-position: center center;
+  background-size: cover;
+  background-color: #f2f2f2;
+}
+
+.o__map .g__container {
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.k__photos {
+  background-image: url("../imgs/space.jpeg");
+  background-position: center center;
+  background-size: cover;
+  height: 32rem;
+}
+
+.k__mapcontent {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.k__precious {
+  padding: 1.5rem;
+}
+
+.k__jury {
+  margin-top: 5rem;
+}
+
+.k__footerlinks {
+  margin-top: 5rem;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 9px;
+  }
+  .o__identities--wide .m__identity {
+    margin-top: 3rem;
+  }
+  .o__identities--wide .m__identity:first-child {
+    margin-top: 0;
+  }
+  .o__identities--wide, .o__identities--list {
+    margin-top: 0;
+  }
+  .k__responsive--marginTop {
+    margin-top: 5rem;
+  }
+}

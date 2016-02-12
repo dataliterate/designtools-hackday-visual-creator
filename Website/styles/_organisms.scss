@@ -1,0 +1,117 @@
+.o__identities {
+  //margin-top: $unit;
+}
+
+.o__identities--list {
+  display: inline-block;
+  margin-top: $unit - 2rem;
+
+  .m__identity  {
+    margin-bottom: 3rem;
+
+    img {
+      float: left;
+    }
+
+    .description  {
+      height: $unit_big;
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: $unit_small;
+      text-align: left;
+    }
+  }
+
+}
+
+.o__identities--people {
+  .m__identity  {
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+.o__block {
+  padding-left: $unit;
+  padding-right: $unit;
+}
+
+//**************************** Templates ****************************//
+
+article {
+  margin-top: $unit_big;
+  margin-bottom: $unit_big;
+
+  @include cf();
+}
+
+.o__header {
+
+  img {
+    max-width: 300px;
+  }
+}
+
+.o__map  {
+  background-image: url("../imgs/map.png");
+  background-position: center center;
+  background-size: cover;
+  background-color: $grey_xlight;
+
+  .g__container {
+    align-items: stretch;
+  }
+}
+
+
+
+//**************************** Special Treatment ****************************//
+
+.k__photos {
+  background-image: url("../imgs/space.jpeg");
+  background-position: center center;
+  background-size: cover;
+  height: $unit_big*4;
+}
+
+.k__mapcontent  {
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+
+.k__precious  {
+  padding: 1.5rem;
+}
+
+.k__jury  {
+  margin-top: $unit;
+}
+
+.k__footerlinks {
+  margin-top: $unit;
+}
+
+
+//**************************** Responsive ****************************//
+
+@media (max-width: 800px) {
+  html  {
+    font-size: 9px;
+  }
+
+  .o__identities--wide .m__identity  {
+    margin-top: 3rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .o__identities--wide, .o__identities--list {
+    margin-top: 0;
+  }
+
+  .k__responsive--marginTop {
+    margin-top: $unit;
+  }
+}

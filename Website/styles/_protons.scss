@@ -1,0 +1,13 @@
+$black: hsl(0,0,10%);
+$white: hsl(0,0,100%);
+
+$dominant: hsl(170,97,43%);
+$dominant: #F7C873;
+
+$grey: hsl(0,0,50%);
+$grey_light: lighten($grey, 20%);
+$grey_xlight: lighten($grey, 45%);
+
+$unit_small: 2rem;
+$unit: 5rem;
+$unit_big: 8rem;
