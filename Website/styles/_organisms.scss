@@ -42,8 +42,6 @@
 article {
   margin-top: $unit_big;
   margin-bottom: $unit_big;
-
-  @include cf();
 }
 
 .o__header {
