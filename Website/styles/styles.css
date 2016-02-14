@@ -45,7 +45,7 @@ html {
 }
 
 body {
-  font-family: 'DIN Next W01 Rounded', Helvetica, Arial, sans-serif;
+  font-family: 'DIN Next W01 Rounded', 'DIN Round Pro', Helvetica, Arial, sans-serif;
   color: #1a1a1a;
   font-weight: 200;
   font-size: 2em;
@@ -339,6 +339,18 @@ article {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
+.k__guests {
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.k__participants {
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
 .k__precious {
   padding: 1.5rem;
 }
@@ -366,5 +378,15 @@ article {
   }
   .k__responsive--marginTop {
     margin-top: 5rem;
+  }
+  .k__guests {
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .k__participants {
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
   }
 }
