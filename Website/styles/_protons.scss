@@ -1,3 +1,27 @@
+//*****************************************************************//
+//*                                                               *//
+//*                           PROTONS                             *//
+//*                                                               *//
+//*****************************************************************//
+
+
+//**************************** Reset ****************************//
+@import 'reset';
+
+
+//**************************** Size Units ****************************//
+
+html {
+  font-size: 10px;
+}
+
+$unit_small: 2rem;
+$unit: 5rem;
+$unit_big: 8rem;
+
+
+//**************************** Colors ****************************//
+
 $black: hsl(0,0,10%);
 $white: hsl(0,0,100%);
 
@@ -5,9 +29,70 @@ $dominant: hsl(170,97,43%);
 //$dominant: #F7C873;
 
 $grey: hsl(0,0,50%);
-$grey_light: lighten($grey, 20%);
 $grey_xlight: lighten($grey, 45%);
 
-$unit_small: 2rem;
-$unit: 5rem;
-$unit_big: 8rem;
+
+//**************************** Typeface ****************************//
+
+body  {
+  font-family: 'DIN Next W01 Rounded', 'DIN Round Pro', sans-serif;
+}
+
+
+//**************************** Grid ****************************//
+
+.g__center  {
+  width: 100%;
+  max-width: $unit_big * 14;
+  margin-right: auto;
+  margin-left: auto;
+
+  padding-left: $unit;
+  padding-right: $unit;
+}
+
+.g__container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.g__container--stretch {
+  align-items: stretch;
+}
+
+@mixin gutter {
+  padding-left: $unit_small;
+  padding-right: $unit_small;
+}
+
+.g__3-12  {
+  flex: 0 0 25%;
+  @include gutter;
+}
+
+.g__4-12  {
+  flex: 0 0 33.333%;
+  @include gutter;
+}
+
+.g__6-12  {
+  flex: 0 0 50%;
+  @include gutter;
+}
+
+.g__8-12  {
+  flex: 0 0 66.6666%;
+  @include gutter;
+}
+
+.g__12-12  {
+  flex: 0 0 100%;
+  @include gutter;
+}
+
+@media (max-width: 800px) {
+  .g__3-12, .g__4-12, .g__6-12, .g__8-12  {
+    flex: 0 0 100%;
+  }
+}

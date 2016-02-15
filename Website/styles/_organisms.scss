@@ -1,3 +1,33 @@
+//*****************************************************************//
+//*                                                               *//
+//*                          ORGANISMS                            *//
+//*                                                               *//
+//*****************************************************************//
+
+article {
+  margin-top: $unit_big;
+  margin-bottom: $unit_big;
+}
+
+
+//**************************** Header ****************************//
+
+.o__header {
+
+  img {
+    max-width: 300px;
+  }
+}
+
+
+//**************************** Footer ****************************//
+
+.o__footer {
+}
+
+
+//**************************** Identities ****************************//
+
 .o__identities {
   //margin-top: $unit;
 }
@@ -13,7 +43,7 @@
       float: left;
     }
 
-    .description  {
+    .m__identity__description  {
       height: $unit_big;
       display: table-cell;
       vertical-align: middle;
@@ -32,100 +62,11 @@
   }
 }
 
-.o__block {
-  padding-left: $unit;
-  padding-right: $unit;
-}
 
-//**************************** Templates ****************************//
-
-article {
-  margin-top: $unit_big;
-  margin-bottom: $unit_big;
-}
-
-.o__header {
-
-  img {
-    max-width: 300px;
-  }
-}
+//**************************** Map ****************************//
 
 .o__map  {
   background-image: url("../imgs/map.png");
   background-position: center center;
   background-size: cover;
-  background-color: $grey_xlight;
-
-  .g__container {
-    align-items: stretch;
-  }
-}
-
-
-
-//**************************** Special Treatment ****************************//
-
-.k__photos {
-  background-image: url("../imgs/space.jpeg");
-  background-position: center center;
-  background-size: cover;
-  height: $unit_big*4;
-}
-
-.k__mapcontent  {
-  box-shadow: 0 1px 3px rgba(0,0,0,.15);
-}
-
-.k__guests  {
-  order: 1;
-}
-
-.k__participants  {
-  order: 2;
-}
-
-.k__precious  {
-  padding: 1.5rem;
-}
-
-.k__jury  {
-  margin-top: $unit;
-}
-
-.k__footerlinks {
-  margin-top: $unit;
-}
-
-
-//**************************** Responsive ****************************//
-
-@media (max-width: 800px) {
-  html  {
-    font-size: 9px;
-  }
-
-  .o__identities--wide .m__identity  {
-    margin-top: 3rem;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  .o__identities--wide, .o__identities--list {
-    margin-top: 0;
-  }
-
-  .k__responsive--marginTop {
-    margin-top: $unit;
-  }
-
-  .k__guests  {
-    order: 2;
-  }
-
-  .k__participants  {
-    order: 1;
-  }
 }

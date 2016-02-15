@@ -1,17 +1,25 @@
-//**************************** Type ****************************//
+//*****************************************************************//
+//*                                                               *//
+//*                            ATOMS                              *//
+//*                                                               *//
+//*****************************************************************//
+
+//**************************** Text: Semantic ****************************//
 
 body {
-  font-family: 'DIN Next W01 Rounded', 'DIN Round Pro', Helvetica, Arial, sans-serif;
-  color: $black;
+  font-size: 2rem;
   font-weight: 200;
-  font-size: 2em;
   line-height: 1.4em;
+
+  color: $black;
 }
 
-//**************************** Type: Semantic ****************************//
-
-img {
-  width: 100%;
+.title  {
+  font-size: 2.4em;
+  line-height: 1.1em;
+  font-weight: 100;
+  color: $black;
+  margin: 0;
 }
 
 h1  {
@@ -22,17 +30,9 @@ h1  {
   margin-bottom: 1em;
 }
 
-h1 + .text--subheadline {
+.subH1 {
   margin-top: -1em;
   margin-bottom: 1.75em;
-}
-
-h1.text--title  {
-  font-size: 2.4em;
-  line-height: 1.1em;
-  font-weight: 100;
-  color: $black;
-  margin: 0;
 }
 
 h2  {
@@ -60,15 +60,88 @@ p {
     margin-bottom: 0;
   }
 }
-a {
-  color: inherit;
-}
 
 strong  {
   font-weight: 500;
 }
 
+a {
+  color: inherit;
+}
+
+.button {
+  display: inline-block;;
+  text-decoration: none;
+
+  background-color: $dominant;
+  color: $white;
+
+  padding: .2em .5em .3em .5em;
+  border-radius: .25em;
+  margin-left: -.25em;
+  margin-top: 1em;
+}
+
+
 //**************************** Type: Visual ****************************//
+
+a.a--invisible  {
+  text-decoration: inherit;
+}
+
+//**************************** Image ****************************//
+
+img {
+  width: 100%;
+}
+
+.img--face  {
+  img {
+    border-radius: 50%;
+  }
+}
+
+  img.img--face  {
+    border-radius: 50%;
+  }
+
+.img--border--white {
+  img {
+    border: (1rem/4) solid $white;
+    box-sizing: content-box;
+  }
+}
+
+  img.img--border--white  {
+    border: (1rem/4) solid $white;
+    box-sizing: content-box;
+  }
+
+//**************************** Boxes ****************************//
+
+.box--border  {
+  border: (1rem/3) solid $dominant;
+  padding-top: $unit_small;
+  padding-bottom: $unit_small;
+}
+
+.box--solid {
+  background-color: $white;
+  padding-top: $unit_small;
+  padding-bottom: $unit_small;
+}
+
+.box--spacing {
+  padding-top: $unit;
+  padding-bottom: $unit;
+}
+
+.box--shadow  {
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+
+
+//**************************** Visual Helpers ****************************//
 
 .text--center {
   text-align: center;
@@ -84,136 +157,45 @@ strong  {
   line-height: 1.45em;
 }
 
-p.text--small {
-  margin-bottom: .5em;
+  p.text--small {
+    margin-bottom: .5em;
+  }
+
+
+// Colors
+
+.text--white {
+  color: $white;
 }
 
-.text--white  {
-  color: $white;
+.solid--white {
+  background-color: $white;
+}
+
+.border--white {
+  border-color: $white;
 }
 
 .text--grey {
   color: $grey;
 }
 
-a.text--invisiblelink {
-  text-decoration: inherit;
-}
-
-
-//**************************** Form ****************************//
-
-.button {
-  display: inline-block;;
-
-  //font-weight: 500;
-  text-decoration: none;
-
-  background-color: $dominant;
-  color: $white;
-
-  padding: .3em .5em;
-  padding-top: .2em;
-  border-radius: .25em;
-
-  margin-left: -.25em;
-  margin-top: 1em;
-}
-
-//**************************** Grid ****************************//
-
-.g__center  {
-  width: 100%;
-  max-width: $unit_big * 14;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.g__container {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-@mixin gutter {
-  padding-left: $unit_small;
-  padding-right: $unit_small;
-
-}
-
-.g__3-12  {
-  flex: 0 0 25%;
-  @include gutter;
-}
-
-.g__4-12  {
-  flex: 0 0 33.333%;
-  @include gutter;
-}
-
-.g__6-12  {
-  flex: 0 0 50%;
-  @include gutter;
-}
-
-.g__8-12  {
-  flex: 0 0 66.6666%;
-  @include gutter;
-}
-
-.g__12-12  {
-  flex: 0 0 100%;
-  @include gutter;
-}
-
-@media (max-width: 800px) {
-  .g__3-12, .g__4-12, .g__6-12, .g__8-12  {
-    flex: 0 0 100%;
-    @include gutter;
-  }
-}
-
-//**************************** Boxes ****************************//
-
-.box--background--white {
-  background-color: $white;
-}
-
-.box--background--grey {
+.solid--grey {
   background-color: $grey_xlight;
 }
 
-.box--background--dominant  {
+.border--grey {
+  border-color: $grey;
+}
+
+.text--dominant {
+  color: $dominant;
+}
+
+.solid--dominant {
   background-color: $dominant;
 }
 
-.box--imgBorder--white  {
-  img {
-    border: (1rem/4) solid $white;
-    box-sizing: content-box;
-  }
-}
-
-.box--border  {
-  border: (1rem/3) solid $dominant;
-}
-
-.box--padding  {
-  padding-top: $unit_small;
-  padding-bottom: $unit_small;
-}
-
-.box--paddingBig  {
-  padding-top: $unit;
-  padding-bottom: $unit;
-}
-
-.box--spacing {
-  padding-top: $unit;
-  padding-bottom: $unit;
-}
-
-.box--spacingBig {
-  padding-top: $unit_big;
-  padding-bottom: $unit_big;
+.border--dominant {
+  border-color: $dominant;
 }

@@ -1,0 +1,69 @@
+//*****************************************************************//
+//*                                                               *//
+//*                            HACKS                              *//
+//*                                                               *//
+//*****************************************************************//
+
+
+//**************************** Special Treatment ****************************//
+
+.h__photos {
+  background-image: url("../imgs/space.jpeg");
+  background-position: center center;
+  background-size: cover;
+  height: $unit_big*4;
+}
+
+
+.h__guests  {
+  order: 1;
+}
+
+.h__participants  {
+  order: 2;
+}
+
+.h__precious  {
+  padding: 1.5rem;
+}
+
+.h__jury  {
+  margin-top: $unit;
+}
+
+.h__footerlinks {
+  margin-top: $unit;
+}
+
+
+//**************************** Responsive Fixes ****************************//
+
+@media (max-width: 800px) {
+  html  {
+    font-size: 9px;
+  }
+
+  .o__identities--wide .m__identity  {
+    margin-top: 3rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .o__identities--wide, .o__identities--list {
+    margin-top: 0;
+  }
+
+  .h__responsive--marginTop {
+    margin-top: $unit;
+  }
+
+  .h__guests  {
+    order: 2;
+  }
+
+  .h__participants  {
+    order: 1;
+  }
+}
