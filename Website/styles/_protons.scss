@@ -19,6 +19,13 @@ $unit_small: 2rem;
 $unit: 5rem;
 $unit_big: 8rem;
 
+$resonsiveBreakpoint: 800px;
+
+@media (max-width: $resonsiveBreakpoint) {
+  html  {
+    font-size: 9px;
+  }
+}
 
 //**************************** Colors ****************************//
 
@@ -26,7 +33,7 @@ $black: hsl(0,0,10%);
 $white: hsl(0,0,100%);
 
 $dominant: hsl(170,97,43%);
-//$dominant: #F7C873;
+$dominant: #F7C873;
 
 $grey: hsl(0,0,50%);
 $grey_xlight: lighten($grey, 45%);
@@ -91,7 +98,12 @@ body  {
   @include gutter;
 }
 
-@media (max-width: 800px) {
+@media (max-width: $resonsiveBreakpoint) {
+  .g__center  {
+    padding-left: $unit/4;
+    padding-right: $unit/4;
+  }
+
   .g__3-12, .g__4-12, .g__6-12, .g__8-12  {
     flex: 0 0 100%;
   }

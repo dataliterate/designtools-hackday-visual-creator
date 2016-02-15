@@ -23,21 +23,24 @@ article {
 //**************************** Footer ****************************//
 
 .o__footer {
+  .o__footer__legallinks  {
+    margin-top: $unit;
+  }
 }
 
 
 //**************************** Identities ****************************//
 
-.o__identities {
-  //margin-top: $unit;
-}
-
 .o__identities--list {
   display: inline-block;
-  margin-top: $unit - 2rem;
 
   .m__identity  {
-    margin-bottom: 3rem;
+    margin-bottom: $unit_small * 1.5;
+    clear:both;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     img {
       float: left;
@@ -55,11 +58,7 @@ article {
 }
 
 .o__identities--people {
-  .m__identity  {
-    img {
-      border-radius: 50%;
-    }
-  }
+  @include img--face;
 }
 
 

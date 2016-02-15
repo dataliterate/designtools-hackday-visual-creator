@@ -7,14 +7,15 @@
 
 //**************************** Special Treatment ****************************//
 
-.h__photos {
+// Insert responsive photo
+.h__photo {
   background-image: url("../imgs/space.jpeg");
   background-position: center center;
   background-size: cover;
   height: $unit_big*4;
 }
 
-
+// Switch order of elements
 .h__guests  {
   order: 1;
 }
@@ -23,42 +24,42 @@
   order: 2;
 }
 
+// Decrease logo size to fit others
 .h__precious  {
   padding: 1.5rem;
 }
 
-.h__jury  {
-  margin-top: $unit;
-}
-
-.h__footerlinks {
-  margin-top: $unit;
-}
-
-
 //**************************** Responsive Fixes ****************************//
 
-@media (max-width: 800px) {
-  html  {
-    font-size: 9px;
+@media (max-width: $resonsiveBreakpoint) {
+
+  // Increase Touch-Target size
+  .button {
+    padding: .55em 1em .5em 1em;
+    margin-left: 0;
   }
 
-  .o__identities--wide .m__identity  {
-    margin-top: 3rem;
+  // Fix vertical rhythm
+  article {
+    margin-top: $unit;
+    margin-bottom: $unit;
+  }
 
-    &:first-child {
-      margin-top: 0;
+  // Fox wide to list breakpoint
+  .o__identities--wide .m__identity  {
+    margin-bottom: $unit_small * 1.5;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
-  .o__identities--wide, .o__identities--list {
-    margin-top: 0;
-  }
-
+  // Add vertical space to right columns
   .h__responsive--marginTop {
     margin-top: $unit;
   }
 
+  // Switch order of elements
   .h__guests  {
     order: 2;
   }

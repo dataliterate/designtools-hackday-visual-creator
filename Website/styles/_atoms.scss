@@ -105,6 +105,12 @@ img {
     border-radius: 50%;
   }
 
+  @mixin img--face {
+    img {
+      border-radius: 50%;
+    }
+  }
+
 .img--border--white {
   img {
     border: (1rem/4) solid $white;
