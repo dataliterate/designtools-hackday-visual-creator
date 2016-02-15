@@ -151,7 +151,7 @@ body {
 h1 {
   font-size: 1.5em;
   font-weight: 500;
-  color: #F7C873;
+  color: #03d8b5;
   margin-bottom: 1em;
 }
 
@@ -163,7 +163,7 @@ h1 {
 h2 {
   font-size: 1.05em;
   font-weight: 500;
-  color: #F7C873;
+  color: #03d8b5;
   margin-bottom: .2em;
   margin-top: 1em;
 }
@@ -196,7 +196,7 @@ a {
 .button {
   display: inline-block;
   text-decoration: none;
-  background-color: #F7C873;
+  background-color: #03d8b5;
   color: white;
   padding: .2em .5em .3em .5em;
   border-radius: .25em;
@@ -236,7 +236,7 @@ img.img--border--white {
 }
 
 .box--border {
-  border: 0.33333rem solid #F7C873;
+  border: 0.33333rem solid #03d8b5;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -299,15 +299,15 @@ p.text--small {
 }
 
 .text--dominant {
-  color: #F7C873;
+  color: #03d8b5;
 }
 
 .solid--dominant {
-  background-color: #F7C873;
+  background-color: #03d8b5;
 }
 
 .border--dominant {
-  border-color: #F7C873;
+  border-color: #03d8b5;
 }
 
 .m__identity {
