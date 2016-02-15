@@ -161,10 +161,9 @@ h1 {
 }
 
 h2 {
-  font-size: 1.05em;
+  font-size: 1.03em;
   font-weight: 500;
   color: #03d8b5;
-  margin-bottom: .2em;
   margin-top: 1em;
 }
 
@@ -175,6 +174,11 @@ h2:first-child {
 h3 {
   font-size: 1em;
   font-weight: 500;
+  margin-top: 1em;
+}
+
+h3:first-child {
+  margin-top: 0;
 }
 
 p {
@@ -236,7 +240,7 @@ img.img--border--white {
 }
 
 .box--border {
-  border: 0.33333rem solid #03d8b5;
+  border: 0.33333rem solid #f2f2f2;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -261,7 +265,7 @@ img.img--border--white {
 }
 
 .text--big {
-  font-size: 1.4em;
+  font-size: 1.6em;
   line-height: 1.3em;
 }
 
@@ -295,18 +299,18 @@ p.text--small {
 }
 
 .border--grey {
-  border-color: gray;
+  border-color: #e6e6e6;
 }
 
-.text--dominant {
+.text--primary {
   color: #03d8b5;
 }
 
-.solid--dominant {
+.solid--primary {
   background-color: #03d8b5;
 }
 
-.border--dominant {
+.border--primary {
   border-color: #03d8b5;
 }
 
@@ -375,6 +379,7 @@ article {
 
 #InnerGroup path {
   transition: opacity .5s;
+  stroke-width: 20;
 }
 
 .h__photo {

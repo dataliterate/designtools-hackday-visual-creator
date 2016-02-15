@@ -32,11 +32,14 @@ $resonsiveBreakpoint: 800px;
 $black: hsl(0,0,10%);
 $white: hsl(0,0,100%);
 
-$dominant: hsl(170,97,43%);
-//$dominant: #E57B5C;
-//$dominant: #F7C873; // Dottergel
+$primary: hsl(170,97,43%);
+//$primary: #F7C873;
+//$secondary: #F7C873; // Dottergelb
+$secondary: #DE4242; // Rot
+$secondary: $primary;
 
 $grey: hsl(0,0,50%);
+$grey_light: lighten($grey, 40%);
 $grey_xlight: lighten($grey, 45%);
 
 
