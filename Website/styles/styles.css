@@ -334,8 +334,14 @@ article {
   margin-bottom: 8rem;
 }
 
-.o__header img {
-  max-width: 300px;
+.o__header .title {
+  margin-bottom: 160px;
+}
+
+.o__header svg {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .o__footer .o__footer__legallinks {

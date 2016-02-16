@@ -13,8 +13,16 @@ article {
 //**************************** Header ****************************//
 
 .o__header {
-  img {
-    max-width: 300px;
+  //height: 500px;
+
+  .title  {
+    margin-bottom: 160px;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
