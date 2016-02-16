@@ -6,6 +6,9 @@ function getDistance(x1, y1, x2, y2)  {
   return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
 }
 
+
+
+
 $(document).ready(function()  {
   var h = $(".j__timetable--long").outerHeight();
   $(".j__timetable--short").css({"min-height": h });
@@ -88,12 +91,12 @@ $(document).ready(function()  {
   var nodes = [];
 
   for (var x = 0; x < 20; x += 1)  {
-    for (var y = 0; y < 20; y += 1)  {
+    for (var y = 0; y < 10; y += 1)  {
 
     var node = {
       "id": (x * 20) + y,
-      "x": (x * 50) + getRandom(-50,50),
-      "y": (y * 10) + getRandom(-50,50)
+      "x": (x * 120) + getRandom(-50,50),
+      "y": (y * 120) + getRandom(-50,50)
     };
 
     nodes.push(node);
@@ -105,13 +108,12 @@ $(document).ready(function()  {
   var points = [];
 
   for (var i = 0; i < nodes.length; i++){
-    points.push(nodes[i].x);
-    points.push(nodes[i].y);
+    points.push([nodes[i].x, nodes[i].y]);
   }
 
   console.log(points);
 
-  var triangles = earcut(points);
+  var triangles = Delaunay.triangulate(points);
 
   console.log(triangles);
 
@@ -135,33 +137,9 @@ $(document).ready(function()  {
 
   }
 
-  //
-  //
-  // var trangles = [];
-  //
-  // for (var x = 0; x < 19; x += 1)  {
-  //   for (var y = 0; y < 19; y += 1)  {
-  //
-  //     var triangle = [
-  //       "M",
-  //       nodes[(x * 20) + y].x,
-  //       nodes[(x * 20) + y].y,
-  //       "L",
-  //       nodes[((x+1) * 20) + y].x,
-  //       nodes[((x+1) * 20) + y].y,
-  //       "L",
-  //       nodes[(x * 20) + (y+1)].x,
-  //       nodes[(x * 20) + (y+1)].y,
-  //       "L",
-  //       nodes[(x * 20) + y].x,
-  //       nodes[(x * 20) + y].y
-  //     ].join(' ');
-  //
-  //     Pablo("header svg").append("<path d='" + triangle + "'/>");
-  //
-  //   }
-  // }
+  for (var i = 0; i < nodes.length; i++){
+    points.push([nodes[i].x, nodes[i].y]);
 
-
-
+      Pablo("header svg").append("<circle cx='" + nodes[i].x + "' cy='" + nodes[i].y + "' r='10' fill='hsl(170,97%,43%)' stroke='none'/>");
+  }
 });
