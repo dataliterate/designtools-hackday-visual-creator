@@ -13,56 +13,47 @@ $(document).ready(function()  {
 
   var nodes = [];
 
-  for (var i = 0; i < 700; i++)  {
+  for (var x = 0; x < 20; x += 1)  {
+    for (var y = 0; y < 20; y += 1)  {
+
     var node = {
-      "id": i,
-      "x": getRandom(0, 500),
-      "y": getRandom(0, 500),
-      "closest": []
+      "id": (x * 20) + y,
+      "x": (x * 100) + getRandom(-50,50),
+      "y": (y * 100) + getRandom(-50,50)
     };
 
     nodes.push(node);
-  }
-
-  for (var i = 0; i < nodes.length; i++)  {
-    var closestDistance = [50000000, 50000000, 50000000];
-
-    for (var j = 0; j < nodes.length; j++)  {
-      if (nodes[j].id !== nodes[i].id)  {
-
-        var d = getDistance(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-
-        if (d <= closestDistance[0])  {
-          closestDistance.splice(0, 0, d);
-          nodes[i].closest.splice(0, 0, nodes[j].id);
-        } else if (d <= closestDistance[1])  {
-          closestDistance.splice(1, 0, d);
-          nodes[i].closest.splice(1, 0, nodes[j].id);
-        } else if (d <= closestDistance[2])  {
-          closestDistance.splice(2, 0, d);
-          nodes[i].closest.splice(2, 0, nodes[j].id);
-        }
-      }
     }
   }
-
-  for (var i = 0; i < nodes.length; i++)  {
-    for (var j = 0; j < 2; j++) {
-      var path = [
-        "M",
-        nodes[i].x,
-        nodes[i].y,
-        "L",
-        nodes[parseInt(nodes[i].closest[j])].x,
-        nodes[parseInt(nodes[i].closest[j])].y,
-        "Z"
-      ].join(" ");
-
-      Pablo("header svg").append("<path d='" + path + "'/>");
-    }
-  }
-
 
   console.log(nodes);
+
+
+  var trangles = [];
+
+  for (var x = 0; x < 19; x += 1)  {
+    for (var y = 0; y < 19; y += 1)  {
+
+      var triangle = [
+        "M",
+        nodes[(x * 20) + y].x,
+        nodes[(x * 20) + y].y,
+        "L",
+        nodes[((x+1) * 20) + y].x,
+        nodes[((x+1) * 20) + y].y,
+        "L",
+        nodes[(x * 20) + (y+1)].x,
+        nodes[(x * 20) + (y+1)].y,
+        "L",
+        nodes[(x * 20) + y].x,
+        nodes[(x * 20) + y].y
+      ].join(' ');
+
+      Pablo("header svg").append("<path d='" + triangle + "'/>");
+
+    }
+  }
+
+
 
 });
