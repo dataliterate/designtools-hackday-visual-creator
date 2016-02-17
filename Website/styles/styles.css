@@ -334,6 +334,10 @@ article {
   margin-bottom: 8rem;
 }
 
+.o__header section {
+  opacity: 0;
+}
+
 .o__header .title {
   margin-bottom: 160px;
 }

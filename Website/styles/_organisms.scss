@@ -14,7 +14,10 @@ article {
 
 .o__header {
   //height: 500px;
-
+  section {
+    opacity: 0;
+  }
+  
   .title  {
     margin-bottom: 160px;
   }

@@ -14,7 +14,8 @@ $(document).ready(function()  {
   $(".j__timetable--short").css({"min-height": h });
 
 
-//////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////
+  var svg = Snap("#svg");
 
   var diamondPoints = [
     {
@@ -83,6 +84,7 @@ $(document).ready(function()  {
     diamondPoints[6],
   ];
 
+  // Creater outer diamond shape
   var diamondOuterPath= [
     "M",
     diamondPoints[0].x,
@@ -106,52 +108,66 @@ $(document).ready(function()  {
     diamondPoints[6].x,
     diamondPoints[6].y,
     "Z"
-  ]
+  ];
 
-  var svg = Snap("#svg");
   var diamondOuter = svg.path(diamondOuterPath.join(' '));
 
+  // Create random nodes
   var nodes = [];
 
   for (var x = 0; x < 20; x += 1)  {
     for (var y = 0; y < 10; y += 1)  {
+      var node = {
+        "id": (x * 20) + y,
+        "x": (x * 50) + getRandom(-30,30),
+        "y": (y * 50) + getRandom(-30,30)
+      };
 
-    var node = {
-      "id": (x * 20) + y,
-      "x": (x * 120) + getRandom(-30,30),
-      "y": (y * 120) + getRandom(-30,30)
-    };
-
-    nodes.push(node);
+      nodes.push(node);
     }
   }
 
+  // Delete nodes that are inside the diamond
   var i = nodes.length;
+
   while (i--)  {
     if (Snap.path.isPointInside(diamondOuter, nodes[i].x, nodes[i].y)) {
       nodes.splice(i, 1);
     }
   }
 
+  // Add outer diamond points to the network
   nodes = nodes.concat(diamondOuterPoints);
 
+  // Get Delaunay Triangles
   var points = [];
-
   for (var i = 0; i < nodes.length; i++){
     points.push([nodes[i].x, nodes[i].y]);
   }
-
   var triangles = Delaunay.triangulate(points);
 
+  // Draw triangles
   for (var i = 0; i < triangles.length - 3; i += 3)  {
-    var path = [
+    var side1 = [
       "M",
       nodes[triangles[i]].x,
       nodes[triangles[i]].y,
       "L",
       nodes[triangles[i+1]].x,
+      nodes[triangles[i+1]].y
+    ].join(' ');
+
+    var side2 = [
+      "M",
+      nodes[triangles[i+1]].x,
       nodes[triangles[i+1]].y,
       "L",
+      nodes[triangles[i+2]].x,
+      nodes[triangles[i+2]].y
+    ].join(' ');
+
+    var side3 = [
+      "M",
       nodes[triangles[i+2]].x,
       nodes[triangles[i+2]].y,
       "L",
@@ -159,12 +175,30 @@ $(document).ready(function()  {
       nodes[triangles[i]].y
     ].join(' ');
 
-    svg.path(path);
-  }
+    var triangle = [svg.path(side1), svg.path(side2), svg.path(side3)];
 
-  // for (var i = 0; i < nodes.length; i++){
-  //   points.push([nodes[i].x, nodes[i].y]);
-  //
-  //   //  Pablo("header svg").append("<circle cx='" + nodes[i].x + "' cy='" + nodes[i].y + "' r='10' fill='hsl(170,97%,43%)' stroke='none'/>");
-  // }
+    for (var j = 0; j < triangle.length; j++) {
+      var intersects = Snap.path.intersection(diamondOuter, triangle[j]);
+
+      var deleteMe = false;
+
+      if (intersects.length > 0)  {
+      //  deleteMe = true;
+      }
+
+      for (var k = 0; k < intersects.length; k++) {
+        for (var l = 0; l < diamondOuterPoints.length; l++) {
+          var dist = getDistance(intersects[k].x, intersects[k].y, diamondOuterPoints[l].x, diamondOuterPoints[l].y);
+
+          if (dist > 20)  {
+            deleteMe = true;
+          }
+        }
+      }
+
+      if (deleteMe) {
+        triangle[j].remove();
+      }
+    }
+  }
 });
