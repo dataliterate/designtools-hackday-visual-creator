@@ -4,7 +4,9 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "jquery": "^2.2.0"
+    "delaunay-fast": "git+https://github.com/ironwallaby/delaunay.git",
+    "jquery": "^2.2.0",
+    "snapsvg": "github:sethvincent/Snap.svg#a34b8af69b"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",

@@ -1,15 +1,7 @@
 var $ = require('jquery');
-
-function getRandom(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-function getDistance(x1, y1, x2, y2)  {
-  return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
-}
-
-
-
+var utils = require("./utilities.js");
+var Snap = require('snapsvg');
+var Delaunay = require("delaunay-fast");
 
 $(document).ready(function()  {
   var h = $(".j__timetable--long").outerHeight();
@@ -121,8 +113,8 @@ $(document).ready(function()  {
     for (var y = 0; y < 10; y += 1)  {
       var node = {
         "id": (x * 20) + y,
-        "x": (x * 50) + getRandom(-30,30),
-        "y": (y * 50) + getRandom(-30,30)
+        "x": (x * 50) + utils.getRandom(-30,30),
+        "y": (y * 50) + utils.getRandom(-30,30)
       };
 
       nodes.push(node);
@@ -190,7 +182,7 @@ $(document).ready(function()  {
 
       for (var k = 0; k < intersects.length; k++) {
         for (var l = 0; l < diamondOuterPoints.length; l++) {
-          var dist = getDistance(intersects[k].x, intersects[k].y, diamondOuterPoints[l].x, diamondOuterPoints[l].y);
+          var dist = utils.getDistance(intersects[k].x, intersects[k].y, diamondOuterPoints[l].x, diamondOuterPoints[l].y);
 
           if (dist > 20)  {
             deleteMe = true;
