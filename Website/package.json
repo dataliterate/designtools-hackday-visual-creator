@@ -4,6 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+    "cdt2d": "^1.0.0",
     "delaunay-fast": "git+https://github.com/ironwallaby/delaunay.git",
     "jquery": "^2.2.0",
     "snapsvg": "github:sethvincent/Snap.svg#a34b8af69b"
@@ -14,7 +15,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-minify-css": "^1.2.3",
+    "gulp-cssnano": "^2.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-uglify": "^1.5.2",

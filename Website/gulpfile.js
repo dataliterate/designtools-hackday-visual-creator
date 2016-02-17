@@ -9,7 +9,7 @@ var browserSync = require('browser-sync').create();
 
 // Styles
 var autoprefixer = require('gulp-autoprefixer');
-var minifycss = require('gulp-minify-css');
+var cssnano = require('gulp-cssnano');
 var sass = require('gulp-sass');
 
 // Scripts
@@ -26,7 +26,7 @@ gulp.task('styles', function(){
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
+    .pipe(cssnano())
     .pipe(gulp.dest('dist/styles/'))
     .pipe(browserSync.reload({
       stream: true
