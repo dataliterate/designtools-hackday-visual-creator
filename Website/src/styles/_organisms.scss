@@ -1,0 +1,80 @@
+//*****************************************************************//
+//*                                                               *//
+//*                          ORGANISMS                            *//
+//*                                                               *//
+//*****************************************************************//
+
+article {
+  margin-top: $unit_big;
+  margin-bottom: $unit_big;
+}
+
+
+//**************************** Header ****************************//
+
+.o__header {
+  //height: 500px;
+  section {
+    //opacity: 0;
+  }
+
+  .title  {
+    margin-bottom: 160px;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+
+//**************************** Footer ****************************//
+
+.o__footer {
+  .o__footer__legallinks  {
+    margin-top: $unit;
+  }
+}
+
+
+//**************************** Identities ****************************//
+
+.o__identities--list {
+  display: inline-block;
+
+  .m__identity  {
+    margin-bottom: $unit_small * 1.5;
+    clear:both;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    img {
+      float: left;
+    }
+
+    .m__identity__description  {
+      height: $unit_big;
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: $unit_small;
+      text-align: left;
+    }
+  }
+}
+
+.o__identities--people {
+  @include img--face;
+}
+
+
+//**************************** Map ****************************//
+
+.o__map  {
+  background-image: url("../imgs/map.png");
+  background-position: center center;
+  background-size: cover;
+}
