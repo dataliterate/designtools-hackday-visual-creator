@@ -210,7 +210,7 @@ a {
 }
 
 .button:hover {
-  background-color: #03c9a8;
+  background-color: #03bfa0;
 }
 
 a.a--invisible {
@@ -320,7 +320,7 @@ p.text--small {
 }
 
 .solid--primary--dark {
-  background-color: #03c9a8;
+  background-color: #03bfa0;
 }
 
 .solid--black--transparent {
@@ -348,7 +348,7 @@ article {
 }
 
 .o__header .title {
-  margin-bottom: 160px;
+  margin-bottom: 120px;
 }
 
 .o__header svg {
@@ -362,13 +362,13 @@ article {
 }
 
 .o__header .o__header__top img {
-  height: 40px;
+  height: 30px;
   width: auto;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 
 .o__header .o__header__top .precious {
-  padding: .4rem;
+  padding: .2rem;
 }
 
 .o__footer .o__footer__legallinks {

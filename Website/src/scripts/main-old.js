@@ -2,39 +2,188 @@ var $ = require('jquery');
 var utils = require("./utilities.js");
 var Snap = require('snapsvg');
 var Delaunay = require("delaunay-fast");
-
 var cdt2d = require('cdt2d');
 
 $(document).ready(function()  {
-  var h = $(".j__timetable--long").outerHeight();
-  $(".j__timetable--short").css({"min-height": h });
+  //////////////////////////// VERTICAL ALGIN ////////////////////////////
 
-  //////////////////////////////////////////////////////////////////
+  // Align timetables
+  var ht1 = $(".j__timetable--long").outerHeight();
+  var ht2 = $(".j__timetable--short").outerHeight();
+  var ht = Math.max(ht1, ht2);
+  $(".j__timetable--short").css({"min-height": ht });
+  $(".j__timetable--long").css({"min-height": ht });
+
+  // Align button
+  var ht1 = $(".j__text--long").outerHeight();
+  var ht2 = $(".j__text--short").outerHeight();
+  var ht = Math.max(ht1, ht2);
+
+  $(".j__text--short").css({"min-height": ht });
+  $(".j__text--long").css({"min-height": ht });
+
+  //////////////////////////// HEADER ////////////////////////////
 
   var svg = Snap("#svg");
 
-  var diamondPoints = [
+  var width = $(window).width();
+  var height = $("#svg").height();
+
+  var outerPoints = [
     [-1000, -1000],
-    [5000, -1000],
-    [5000, 1000],
-    [-1000, 1000],
-    [1100 + 0.6 * 0, 0.6 * 120 + 100],
-    [1100 + 0.6 * 60, 0.6 * 50 + 100],
-    [1100 + 0.6 * 165, 0.6 * 0 + 100],
-    [1100 + 0.6 * 353, 0.6 * 0 + 100],
-    [1100 + 0.6 * 430, 0.6 * 50 + 100],
-    [1100 + 0.6 * 500, 0.6 * 130 + 100],
-    [1100 + 0.6 * 250, 0.6 * 480 + 100]
+    [width + 1000, -1000],
+    [width + 1000, height + 1000],
+    [-1000, height + 1000]
   ];
 
-  var diamondShape = [
-    // Outer Loop
+  var diamondPoints = [
+    [0, 26],
+    [12, 10],
+    [33, 0],
+    [67, 0],
+    [86, 10],
+    [100, 26],
+    [50, 96],
+
+    // Inner
+    [33, 19],
+    [67, 19],
+    [20, 42],
+    [80, 42]
+  ];
+
+  // Create random nodes
+  var nodes = [];
+
+  var nodesX = width / 100;
+  var nodesY = height / 100;
+
+  for (var x = 0; x < nodesX; x += 1)  {
+    for (var y = 0; y < nodesY; y += 1)  {
+      var node = [
+        x + utils.getRandom(-0.3, 0.3),
+        y + utils.getRandom(-0.3, 0.3)
+      ];
+      nodes.push(node);
+    }
+  }
+
+  // Transfrom points
+  var diamondPointsMapped = diamondPoints.map(function(point) {
+    point[0] = point[0] * (height / 200) + (width / 5) * 3;
+    point[1] = point[1] * (height / 200) + (height / 5);
+
+    return point;
+  });
+
+  var nodesMapped = nodes.map(function(point) {
+    point[0] = point[0] * (width / (nodesX - 2)) - (width / (nodesX - 2));
+    point[1] = point[1] * (height / (nodesY - 2)) - (height / (nodesY - 2));
+    return point;
+  });
+
+  // Create the svg shape of the diamond
+  var diamondShapePath = ["M"];
+  for (var i = 0; i < 7; i++) {
+    diamondShapePath.push(diamondPointsMapped[i][0]);
+    diamondShapePath.push(diamondPointsMapped[i][1]);
+    diamondShapePath.push("L");
+  }
+  diamondShapePath.push(diamondPointsMapped[0][0]);
+  diamondShapePath.push(diamondPointsMapped[0][1]);
+
+  var diamondShapeInner1 = [
+    "M",
+    diamondPointsMapped[1][0],
+    diamondPointsMapped[1][1],
+    "L",
+    diamondPointsMapped[7][0],
+    diamondPointsMapped[7][1],
+    "L",
+    diamondPointsMapped[8][0],
+    diamondPointsMapped[8][1],
+    "L",
+    diamondPointsMapped[4][0],
+    diamondPointsMapped[4][1]
+  ];
+
+  var diamondShapeInner1 = [
+    "M",
+    diamondPointsMapped[1][0],
+    diamondPointsMapped[1][1],
+    "L",
+    diamondPointsMapped[7][0],
+    diamondPointsMapped[7][1],
+    "L",
+    diamondPointsMapped[8][0],
+    diamondPointsMapped[8][1],
+    "L",
+    diamondPointsMapped[4][0],
+    diamondPointsMapped[4][1]
+  ];
+
+  var diamondShapeInner2 = [
+    "M",
+    diamondPointsMapped[5][0],
+    diamondPointsMapped[5][1],
+    "L",
+    diamondPointsMapped[10][0],
+    diamondPointsMapped[10][1],
+    "L",
+    diamondPointsMapped[9][0],
+    diamondPointsMapped[9][1],
+    "L",
+    diamondPointsMapped[0][0],
+    diamondPointsMapped[0][1]
+  ];
+
+  var diamondShapeInner3 = [
+    "M",
+    diamondPointsMapped[6][0],
+    diamondPointsMapped[6][1],
+    "L",
+    diamondPointsMapped[10][0],
+    diamondPointsMapped[10][1],
+    "L",
+    diamondPointsMapped[8][0],
+    diamondPointsMapped[8][1]
+  ];
+
+  var diamondShapeInner4 = [
+    "M",
+    diamondPointsMapped[6][0],
+    diamondPointsMapped[6][1],
+    "L",
+    diamondPointsMapped[9][0],
+    diamondPointsMapped[9][1],
+    "L",
+    diamondPointsMapped[7][0],
+    diamondPointsMapped[7][1]
+  ];
+
+  var diamondShapeSVG = svg.path(diamondShapePath.join(' '));
+
+  // Delete nodes that are inside the diamond
+  var i = nodes.length;
+
+  while (i--)  {
+    if (Snap.path.isPointInside(diamondShapeSVG, nodesMapped[i][0], nodesMapped[i][1])) {
+      nodesMapped.splice(i, 1);
+    }
+  }
+
+  diamondShapeSVG.remove();
+
+  // Definde edges/holes
+  var borders = outerPoints.concat(diamondPointsMapped.slice(0, 7));
+  var hole = [
+    //Outer Shape
     [0, 1],
     [1, 2],
     [2, 3],
     [3, 0],
 
-    // Inner Loop
+    // Diamond
     [4, 5],
     [5, 6],
     [6, 7],
@@ -44,271 +193,46 @@ $(document).ready(function()  {
     [10, 4]
   ];
 
-  // Create the svg shape of the diamond
-  var diamondShapePath = ["M"];
-  for (var i = 4; i < diamondPoints.length; i++) {
-    diamondShapePath.push(diamondPoints[i][0]);
-    diamondShapePath.push(diamondPoints[i][1]);
-    diamondShapePath.push("L");
-  }
-  diamondShapePath.splice(-1, 1);
-  diamondShapePath.push("Z");
+  nodesMapped = borders.concat(nodesMapped);
 
-  var diamondShapeSVG = svg.path(diamondShapePath.join(' '));
+  // Calculate triangles
+  var result = cdt2d(nodesMapped, hole, {exterior: false});
 
-   // Create random nodes
-  var nodes = [];
+  // Draw triangles
+  for (var i = 0; i < result.length; i++)  {
+    var path = [
+      "M",
+      (nodesMapped[result[i][0]][0]),
+      (nodesMapped[result[i][0]][1]),
+      "L",
+      (nodesMapped[result[i][1]][0]),
+      (nodesMapped[result[i][1]][1]),
+      "L",
+      (nodesMapped[result[i][2]][0]),
+      (nodesMapped[result[i][2]][1])
+    ].join(' ');
 
-  for (var x = 0; x < 20; x += 1)  {
-    for (var y = 0; y < 10; y += 1)  {
-      var node = [
-        (x * 150) + utils.getRandom(-40,40),
-        (y * 150) + utils.getRandom(-40,40)
-      ];
-      nodes.push(node);
-     }
+    svg.path(path);
   }
 
-  // Delete nodes that are inside the diamond
-  var i = nodes.length;
+  // Draw diamond
 
-  while (i--)  {
-    if (Snap.path.isPointInside(diamondShapeSVG, nodes[i][0], nodes[i][1])) {
-      nodes.splice(i, 1);
-    }
+  var diamonShapeAttribute = {"stroke" : "hsl(170,97,48)", "stroke-width" : "3.5"};
+
+  var diamondShapeSVG = svg.path(diamondShapePath.join(' ')).attr(diamonShapeAttribute);
+
+  var diamondShapeInner1SVG = svg.path(diamondShapeInner1.join(' ')).attr(diamonShapeAttribute);
+  var diamondShapeInner2SVG = svg.path(diamondShapeInner2.join(' ')).attr(diamonShapeAttribute);
+  var diamondShapeInner3SVG = svg.path(diamondShapeInner3.join(' ')).attr(diamonShapeAttribute);
+  var diamondShapeInner4SVG = svg.path(diamondShapeInner4.join(' ')).attr(diamonShapeAttribute);
+
+  // Draw circles on itnersections
+  for (var i = 0; i < nodesMapped.length; i++) {
+    svg.circle(nodesMapped[i][0], nodesMapped[i][1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
+   }
+
+  for (var i = 0; i < diamondPointsMapped.length; i++) {
+    svg.circle(diamondPointsMapped[i][0], diamondPointsMapped[i][1],7).attr({"fill" : "#03d8b5", "stroke" : "none"});
   }
 
-  diamondShapeSVG.remove();
-
-  nodes = diamondPoints.concat(nodes);
-
-  var result = cdt2d(nodes, diamondShape, {exterior: true});
-
- for (var i = 0; i < result.length; i++)  {
-  var path = [
-    "M",
-    (nodes[result[i][0]][0]+2),
-    (nodes[result[i][0]][1]+2),
-    "L",
-    (nodes[result[i][1]][0]+2),
-    (nodes[result[i][1]][1]+2),
-    "L",
-    (nodes[result[i][2]][0]+2),
-    (nodes[result[i][2]][1]+2)
-  ].join(' ');
-
-  svg.path(path);
- }
-
- for (var i = 0; i < nodes.length; i++) {
-   svg.circle(nodes[i][0] + 4, nodes[i][1] + 4, 8).attr({"fill": "#03d8b5", "stroke" : "none"});
- }
-
-
-
-
-
-
-
-
-
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  // var diamondPoints = [
-  //   {
-  //     "x" : 0,
-  //     "y" : 120
-  //   },{
-  //     "x" : 60,
-  //     "y" : 50
-  //   },{
-  //     "x" : 165,
-  //     "y" : 0
-  //   },{
-  //     "x" : 353,
-  //     "y" : 0
-  //   },{
-  //     "x" : 430,
-  //     "y" : 50
-  //   },{
-  //     "x" : 500,
-  //     "y" : 130
-  //   },{
-  //     "x" : 250,
-  //     "y" : 480
-  //   },{
-  //     "x" : 165,
-  //     "y" : 95
-  //   },{
-  //     "x" : 335,
-  //     "y" : 95
-  //   },{
-  //     "x" : 100,
-  //     "y" : 210
-  //   },{
-  //     "x" : 400,
-  //     "y" : 210
-  //   },
-  // ];
-  //
-  // var diamondLines = [
-  //   [0, 1], // left
-  //   [1, 2], // left top
-  //   [2, 3], // top
-  //   [3, 4], // right top
-  //   [4, 5], // right
-  //   [5, 6], // right bottom
-  //   [6, 0], // left bottom
-  //   [0, 9], // left lower center
-  //   [1, 7], // left upper center
-  //   [7, 8], // upper center
-  //   [7, 9], // left upper center to left lower center
-  //   [9, 10], // lower center
-  //   [10, 5], // right lower center
-  //   [10, 8], // right upper center to right lower center
-  //   [8, 4], // right upper center
-  //   [9, 6], // left lower center to bottom
-  //   [10, 6] // right lower center to bottom
-  // ];
-  //
-  // var diamondOuterPoints = [
-  //   diamondPoints[0],
-  //   diamondPoints[1],
-  //   diamondPoints[2],
-  //   diamondPoints[3],
-  //   diamondPoints[4],
-  //   diamondPoints[5],
-  //   diamondPoints[6],
-  // ];
-  //
-  // // Creater outer diamond shape
-  // var diamondOuterPath= [
-  //   "M",
-  //   diamondPoints[0].x,
-  //   diamondPoints[0].y,
-  //   "L",
-  //   diamondPoints[1].x,
-  //   diamondPoints[1].y,
-  //   "L",
-  //   diamondPoints[2].x,
-  //   diamondPoints[2].y,
-  //   "L",
-  //   diamondPoints[3].x,
-  //   diamondPoints[3].y,
-  //   "L",
-  //   diamondPoints[4].x,
-  //   diamondPoints[4].y,
-  //   "L",
-  //   diamondPoints[5].x,
-  //   diamondPoints[5].y,
-  //   "L",
-  //   diamondPoints[6].x,
-  //   diamondPoints[6].y,
-  //   "Z"
-  // ];
-  //
-  // var diamondOuter = svg.path(diamondOuterPath.join(' '));
-  //
-  // // Create random nodes
-  // var nodes = [];
-  //
-  // for (var x = 0; x < 20; x += 1)  {
-  //   for (var y = 0; y < 10; y += 1)  {
-  //     var node = {
-  //       "id": (x * 20) + y,
-  //       "x": (x * 50) + utils.getRandom(-30,30),
-  //       "y": (y * 50) + utils.getRandom(-30,30)
-  //     };
-  //
-  //     nodes.push(node);
-  //   }
-  // }
-  //
-  // // Delete nodes that are inside the diamond
-  // var i = nodes.length;
-  //
-  // while (i--)  {
-  //   if (Snap.path.isPointInside(diamondOuter, nodes[i].x, nodes[i].y)) {
-  //     nodes.splice(i, 1);
-  //   }
-  // }
-  //
-  // // Add outer diamond points to the network
-  // nodes = nodes.concat(diamondOuterPoints);
-  //
-  // // Get Delaunay Triangles
-  // var points = [];
-  // for (var i = 0; i < nodes.length; i++){
-  //   points.push([nodes[i].x, nodes[i].y]);
-  // }
-  // var triangles = Delaunay.triangulate(points);
-  //
-  // // Draw triangles
-  // for (var i = 0; i < triangles.length - 3; i += 3)  {
-  //   var side1 = [
-  //     "M",
-  //     nodes[triangles[i]].x,
-  //     nodes[triangles[i]].y,
-  //     "L",
-  //     nodes[triangles[i+1]].x,
-  //     nodes[triangles[i+1]].y
-  //   ].join(' ');
-  //
-  //   var side2 = [
-  //     "M",
-  //     nodes[triangles[i+1]].x,
-  //     nodes[triangles[i+1]].y,
-  //     "L",
-  //     nodes[triangles[i+2]].x,
-  //     nodes[triangles[i+2]].y
-  //   ].join(' ');
-  //
-  //   var side3 = [
-  //     "M",
-  //     nodes[triangles[i+2]].x,
-  //     nodes[triangles[i+2]].y,
-  //     "L",
-  //     nodes[triangles[i]].x,
-  //     nodes[triangles[i]].y
-  //   ].join(' ');
-  //
-  //   var triangle = [svg.path(side1), svg.path(side2), svg.path(side3)];
-  //
-  //   for (var j = 0; j < triangle.length; j++) {
-  //     var intersects = Snap.path.intersection(diamondOuter, triangle[j]);
-  //
-  //     var deleteMe = false;
-  //
-  //     if (intersects.length > 0)  {
-  //     //  deleteMe = true;
-  //     }
-  //
-  //     for (var k = 0; k < intersects.length; k++) {
-  //       for (var l = 0; l < diamondOuterPoints.length; l++) {
-  //         var dist = utils.getDistance(intersects[k].x, intersects[k].y, diamondOuterPoints[l].x, diamondOuterPoints[l].y);
-  //
-  //         if (dist > 20)  {
-  //           deleteMe = true;
-  //         }
-  //       }
-  //     }
-  //
-  //     if (deleteMe) {
-  //       triangle[j].remove();
-  //     }
-  //   }
-  // }
 });

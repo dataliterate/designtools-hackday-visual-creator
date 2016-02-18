@@ -77,8 +77,8 @@ $(document).ready(function()  {
   });
 
   var nodesMapped = nodes.map(function(point) {
-    point[0] = point[0] * (width / nodesX);
-    point[1] = point[1] * (height / nodesY);
+    point[0] = point[0] * (width / (nodesX - 2)) - (width / (nodesX - 2));
+    point[1] = point[1] * (height / (nodesY - 2)) - (height / (nodesY - 2));
     return point;
   });
 
@@ -217,13 +217,14 @@ $(document).ready(function()  {
 
   // Draw diamond
 
-  var diamonShapeColor = "hsl(170,97,34)"
-  var diamondShapeSVG = svg.path(diamondShapePath.join(' ')).attr({"stroke" : diamonShapeColor});
+  var diamonShapeAttribute = {"stroke" : "hsl(170,97,48)", "stroke-width" : "3.5"};
 
-  var diamondShapeInner1SVG = svg.path(diamondShapeInner1.join(' ')).attr({"stroke" : diamonShapeColor});
-  var diamondShapeInner2SVG = svg.path(diamondShapeInner2.join(' ')).attr({"stroke" : diamonShapeColor});
-  var diamondShapeInner3SVG = svg.path(diamondShapeInner3.join(' ')).attr({"stroke" : diamonShapeColor});
-  var diamondShapeInner4SVG = svg.path(diamondShapeInner4.join(' ')).attr({"stroke" : diamonShapeColor});
+  var diamondShapeSVG = svg.path(diamondShapePath.join(' ')).attr(diamonShapeAttribute);
+
+  var diamondShapeInner1SVG = svg.path(diamondShapeInner1.join(' ')).attr(diamonShapeAttribute);
+  var diamondShapeInner2SVG = svg.path(diamondShapeInner2.join(' ')).attr(diamonShapeAttribute);
+  var diamondShapeInner3SVG = svg.path(diamondShapeInner3.join(' ')).attr(diamonShapeAttribute);
+  var diamondShapeInner4SVG = svg.path(diamondShapeInner4.join(' ')).attr(diamonShapeAttribute);
 
   // Draw circles on itnersections
   for (var i = 0; i < nodesMapped.length; i++) {
