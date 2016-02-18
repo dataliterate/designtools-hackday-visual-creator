@@ -1,7 +1,7 @@
 var $ = require('jquery');
 var utils = require("./utilities.js");
 var Snap = require('snapsvg');
-var Delaunay = require("delaunay-fast");
+//var Delaunay = require("delaunay-fast");
 var cdt2d = require('cdt2d');
 
 $(document).ready(function()  {
@@ -25,6 +25,7 @@ $(document).ready(function()  {
   //////////////////////////// HEADER ////////////////////////////
 
   var svg = Snap("#svg");
+  var svgMap = Snap("#svg-map");
 
   var width = $(window).width();
   var height = $("#svg").height() + 100;
@@ -272,6 +273,7 @@ $(document).ready(function()  {
     ].join(' ');
 
       svg.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1]});
+      svgMap.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1]});
   }
 
   // Draw the diamond
@@ -345,11 +347,11 @@ $(document).ready(function()  {
       diamondScaled[7][1]
     ].join(' ');
 
-    svg.path(diamondShape).attr({"stroke" : "hsl(170,97,37)", "stroke-width" : "3.5"});
+    svg.path(diamondShape).attr({"stroke" : "hsl(170,97,36)", "stroke-width" : "3.5"});
 
     // Draw the nodes
     for (var i = 0; i < nodes.length; i++) {
-      svg.circle(nodes[i].pos[0], nodes[i].pos[1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
+      svg.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" :"#03d8b5", "stroke" : "none"});
     }
 
     for (var i = 0; i < diamondScaled.length; i++) {

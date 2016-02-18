@@ -405,9 +405,14 @@ article {
 }
 
 .o__map {
-  background-image: url("../imgs/map.png");
   background-position: center center;
   background-size: cover;
+}
+
+.o__map svg {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #InnerGroup path {

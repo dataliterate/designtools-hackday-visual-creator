@@ -88,7 +88,13 @@ article {
 //**************************** Map ****************************//
 
 .o__map  {
-  background-image: url("../imgs/map.png");
+  //background-image: url("../imgs/map.png");
   background-position: center center;
   background-size: cover;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
