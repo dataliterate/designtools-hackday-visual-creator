@@ -38,7 +38,7 @@ gulp.task('scripts', function(){
     .bundle()
     .pipe(source('main.js'))
     .pipe(buffer())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('./dist/scripts/'))
     .pipe(browserSync.reload({
