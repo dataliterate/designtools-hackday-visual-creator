@@ -354,6 +354,10 @@ $(document).ready(function()  {
       svg.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" :"#03d8b5", "stroke" : "none"});
     }
 
+    for (var i = 0; i < nodes.length; i++) {
+      svgMap.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" :"#f2f2f2", "stroke" : "none"});
+    }
+
     for (var i = 0; i < diamondScaled.length; i++) {
       svg.circle(diamondScaled[i][0], diamondScaled[i][1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
     }
