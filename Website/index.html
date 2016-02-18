@@ -14,53 +14,29 @@
   <meta property="og:title" content="Designtools Hackday: Sketch Extensions"/>
   <meta property="og:url" content="http://designtoolshackday.com/preview/"/>
   <meta property="og:description" content="Exploring the future of designtools – two days of hacking away on extensions for Sketch App. Fri, April 8 - Sat, April 9th 2016 at precious design studio in Hamburg."/>
-  <meta property="og:image" content="http://designtoolshackday.com/preview/imgs/designtoolshackday.png">
+  <meta property="og:image" content="http://designtoolshackday.com/preview/dist/imgs/designtoolshackday.png">
 
   <!-- ************* Styles ************* -->
   <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/a88d4eb4-2542-498e-a121-cef51e8d2f37.css"/>
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="dist/styles/styles.min.css">
 
   <!-- ************* Scripts ************-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="scripts/jquery.svg.min.js"></script>
+  <script type="text/javascript" src="dist/scripts/main.min.js"></script>
 
-  <script>
-  function getRandom(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  $(document).ready(function()  {
-    var ht1 = $(".j__timetable--long").outerHeight();
-    var ht2 = $(".j__timetable--short").outerHeight();
-    var ht = Math.max(ht1, ht2);
-    $(".j__timetable--short").css({"min-height": ht });
-    $(".j__timetable--long").css({"min-height": ht });
-
-    var ht1 = $(".j__text--long").outerHeight();
-    var ht2 = $(".j__text--short").outerHeight();
-    var ht = Math.max(ht1, ht2);
-    $(".j__text--short").css({"min-height": ht });
-    $(".j__text--long").css({"min-height": ht });
-
-
-    setInterval(function() {
-      $("#InnerGroup path").each(function() {
-        $(this).css({"opacity": getRandom(0.4, 1)})
-      })
-    }, 500);
-
-  });
-  </script>
 </head>
 
 <body>
 
   <!-- ****************** Header ****************** -->
   <header class="o__header solid--primary">
+    <svg id="svg" fill="transparent" stroke="hsl(170,97%,38%)" stroke-width="3">
+    </svg>
+
     <div class="o__header__top solid--primary--dark">
       <div class="g__center g__container">
         <section class="g__8-12">
-          <img src="imgs/logos/precious.png" class="precious"><img src="imgs/logos/number4.png"> present
+          <img src="dist/imgs/logos/precious.png" class="precious">
+          <img src="dist/imgs/logos/number4.png">
         </section>
       </div>
     </div>
@@ -74,31 +50,6 @@
       </section>
 
       <section class="g__4-12 h__responsive--marginTop">
-        <svg width="988px" height="968px" viewBox="0 0 988 968" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-            <g id="1024-copy-4" sketch:type="MSArtboardGroup" transform="translate(-142.000000, -134.000000)" stroke-linecap="round" stroke="#FFFFFF" stroke-width="20">
-              <g id="InnerGroup" sketch:type="MSLayerGroup" transform="translate(152.000000, 143.000000)">
-                <path d="M224.5,404 L741.557312,404" id="Path-18" sketch:type="MSShapeGroup"></path>
-                <path d="M336.5,186 L642.418701,186" id="Path-19" sketch:type="MSShapeGroup"></path>
-                <path d="M315,1 L639.222137,1" id="Path-20" sketch:type="MSShapeGroup"></path>
-                <path d="M296.5,169.5 L153.5,112.5" id="Path-21" sketch:type="MSShapeGroup"></path>
-                <path d="M278.5,8.5 L136.5,80.5" id="Path-22" sketch:type="MSShapeGroup"></path>
-                <path d="M110.5,110.5 L0.5,232.5" id="Path-23" sketch:type="MSShapeGroup"></path>
-                <path d="M171.5,397.5 L17.5,264.5" id="Path-24" sketch:type="MSShapeGroup"></path>
-                <path d="M298.5,203.5 L206.5,379.5" id="Path-25" sketch:type="MSShapeGroup"></path>
-                <path d="M484.5,948.5 L20,325" id="Path-26" sketch:type="MSShapeGroup"></path>
-                <path d="M483.5,942.5 L196.5,431.5" id="Path-27" sketch:type="MSShapeGroup"></path>
-                <path d="M820.5,176.5 L674.5,111.5" id="Path-21" sketch:type="MSShapeGroup" transform="translate(747.500000, 144.000000) scale(-1, 1) translate(-747.500000, -144.000000) "></path>
-                <path d="M833.5,7.5 L672.5,81.5" id="Path-22" sketch:type="MSShapeGroup" transform="translate(753.000000, 44.500000) scale(-1, 1) translate(-753.000000, -44.500000) "></path>
-                <path d="M967.5,113.5 L862.5,237.5" id="Path-23" sketch:type="MSShapeGroup" transform="translate(915.000000, 175.500000) scale(-1, 1) translate(-915.000000, -175.500000) "></path>
-                <path d="M951.5,390.5 L807.5,271.5" id="Path-24" sketch:type="MSShapeGroup" transform="translate(879.500000, 331.000000) scale(-1, 1) translate(-879.500000, -331.000000) "></path>
-                <path d="M771.5,208.5 L673.5,376.5" id="Path-25" sketch:type="MSShapeGroup" transform="translate(722.500000, 292.500000) scale(-1, 1) translate(-722.500000, -292.500000) "></path>
-                <path d="M952.5,944.5 L488,317" id="Path-26" sketch:type="MSShapeGroup" transform="translate(720.500000, 631.000000) scale(-1, 1) translate(-720.500000, -631.000000) "></path>
-                <path d="M776.5,941.5 L483.5,428.5" id="Path-27" sketch:type="MSShapeGroup" transform="translate(630.000000, 685.000000) scale(-1, 1) translate(-630.000000, -685.000000) "></path>
-              </g>
-            </g>
-          </g>
-        </svg>
       </section>
 
       <section class="g__8-12 h__responsive--marginTop">
@@ -212,7 +163,7 @@
 
         <div class="g__container o__identities o__identities--wide o__identities--people h__jury">
           <div class="g__3-12 m__identity">
-            <img src="imgs/faces/ale.png">
+            <img src="dist/imgs/faces/ale.png">
             <div class="m__identity__description">
               <h3>Ale Munoz</h3>
               <a href="http://www.sketchapp.com/" class="a--invisible" target="_blank">Bohemian Coding</a>
@@ -220,7 +171,7 @@
           </div><!-- m__identity -->
 
           <div class="g__3-12 m__identity">
-            <img src="imgs/faces/cat.png">
+            <img src="dist/imgs/faces/cat.png">
             <div class="m__identity__description">
               <h3>Cat Noone</h3>
               <a href="http://heyimcat.com/" class="a--invisible" target="_blank">Fluid for Sketch/Iris</a>
@@ -228,7 +179,7 @@
           </div><!-- m__identity -->
 
           <div class="g__3-12 m__identity">
-            <img src="imgs/faces/marco.png">
+            <img src="dist/imgs/faces/marco.png">
             <div class="m__identity__description">
               <h3>Marco Boerries</h3>
               <a href="http://www.numberfour.eu/" class="a--invisible" target="_blank">NumberFour AG</a>
@@ -236,7 +187,7 @@
           </div><!-- m__identity -->
 
           <div class="g__3-12 m__identity">
-            <img src="imgs/faces/inken.png">
+            <img src="dist/imgs/faces/inken.png">
             <div class="m__identity__description">
               <h3>Inken Petersen</h3>
               <a href="http://ubercreative.me/" class="a--invisible" target="_blank">ubercreative</a>
@@ -258,7 +209,7 @@
 
         <div class="o__identities o__identities--list o__identities--people">
           <div class="m__identity">
-            <img src="imgs/faces/ale.png">
+            <img src="dist/imgs/faces/ale.png">
             <div class="m__identity__description">
               <h3>Ale Munoz</h3>
               Bohemian Coding
@@ -266,7 +217,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity">
-            <img src="imgs/faces/sam.png">
+            <img src="dist/imgs/faces/sam.png">
             <div class="m__identity__description">
               <h3>Sam Deane</h3>
               Bohemian Coding
@@ -274,7 +225,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity">
-            <img src="imgs/faces/florie.png">
+            <img src="dist/imgs/faces/florie.png">
             <div class="m__identity__description">
               <h3>Florie Salnot</h3>
               precious design studio
@@ -282,7 +233,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity">
-            <img src="imgs/faces/wolfgang.png">
+            <img src="dist/imgs/faces/wolfgang.png">
             <div class="m__identity__description">
               <h3>Wolfgang Knebel</h3>
               NumberFour AG
@@ -298,7 +249,7 @@
 
         <div class="o__identities o__identities--list o__identities--people">
           <div class="m__identity">
-            <img src="imgs/faces/aisha.png">
+            <img src="dist/imgs/faces/aisha.png">
             <div class="m__identity__description">
               <h3>Aisha Adamu</h3>
               precious design studio
@@ -306,7 +257,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity">
-            <img src="imgs/faces/svenja.png">
+            <img src="dist/imgs/faces/svenja.png">
             <div class="m__identity__description">
               <h3>Svenja Peters</h3>
               precious design studio
@@ -314,7 +265,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity">
-            <img src="imgs/faces/michael.png">
+            <img src="dist/imgs/faces/michael.png">
             <div class="m__identity__description">
               <h3>Michael Schieben</h3>
               precious design studio
@@ -322,7 +273,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity">
-            <img src="imgs/faces/christophe.png">
+            <img src="dist/imgs/faces/christophe.png">
             <div class="m__identity__description">
               <h3>Christophe Stoll</h3>
               precious design studio
@@ -339,7 +290,7 @@
       <section class="box--border border--grey">
         <div class="g__container o__identities o__identities--wide ">
           <div class="m__identity g__4-12">
-            <a href="http://precious-forever.com/" target="_blank"><img src="imgs/logos/precious.png" class="h__precious"></a>
+            <a href="http://precious-forever.com/" target="_blank"><img src="dist/imgs/logos/precious.png" class="h__precious"></a>
             <div class="m__identity__description">
               <h3><a href="http://precious-forever.com/" class="a--invisible" target="_blank">precious design studio</a></h3>
               <p>Host &amp; Organizer</p>
@@ -348,7 +299,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity g__4-12">
-            <a href="http://www.numberfour.eu" target="_blank"><img src="imgs/logos/number4.png"></a>
+            <a href="http://www.numberfour.eu" target="_blank"><img src="dist/imgs/logos/number4.png"></a>
             <div class="m__identity__description">
               <h3><a href="http://www.numberfour.eu" class="a--invisible" target="_blank">NumberFour AG</a></h3>
               <p>Host</p>
@@ -357,7 +308,7 @@
           </div><!-- m__identity -->
 
           <div class="m__identity g__4-12">
-            <a href="http://www.sketchapp.com/" target="_blank"><img src="imgs/logos/bohemiancoding.png"></a>
+            <a href="http://www.sketchapp.com/" target="_blank"><img src="dist/imgs/logos/bohemiancoding.png"></a>
             <div class="m__identity__description">
               <h3><a href="http://www.sketchapp.com/" class="a--invisible" target="_blank">Bohemian Coding</a></h3>
               <p>API Partner</p>
