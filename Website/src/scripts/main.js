@@ -50,7 +50,7 @@ $(document).ready(function()  {
   var diamondScaled = diamond.map(function(point) {
     var pointNew = [];
     pointNew[0] = point[0] * (height / 200) + (width / 5) * 3;
-    pointNew[1] = point[1] * (height / 200) + (height / 5);
+    pointNew[1] = point[1] * (height / 200) + (height / 6);
 
     return pointNew;
   });
@@ -219,4 +219,87 @@ $(document).ready(function()  {
 
       svg.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1]});
   }
+
+  // Draw the diamond
+
+    var diamondShape = [
+      "M",
+      diamondScaled[0][0],
+      diamondScaled[0][1],
+      "L",
+      diamondScaled[1][0],
+      diamondScaled[1][1],
+      "L",
+      diamondScaled[2][0],
+      diamondScaled[2][1],
+      "L",
+      diamondScaled[3][0],
+      diamondScaled[3][1],
+      "L",
+      diamondScaled[4][0],
+      diamondScaled[4][1],
+      "L",
+      diamondScaled[5][0],
+      diamondScaled[5][1],
+      "L",
+      diamondScaled[6][0],
+      diamondScaled[6][1],
+      "L",
+      diamondScaled[0][0],
+      diamondScaled[0][1],
+      "M",
+      diamondScaled[1][0],
+      diamondScaled[1][1],
+      "L",
+      diamondScaled[7][0],
+      diamondScaled[7][1],
+      "L",
+      diamondScaled[8][0],
+      diamondScaled[8][1],
+      "L",
+      diamondScaled[4][0],
+      diamondScaled[4][1],
+      "M",
+      diamondScaled[5][0],
+      diamondScaled[5][1],
+      "L",
+      diamondScaled[10][0],
+      diamondScaled[10][1],
+      "L",
+      diamondScaled[9][0],
+      diamondScaled[9][1],
+      "L",
+      diamondScaled[0][0],
+      diamondScaled[0][1],
+      "M",
+      diamondScaled[6][0],
+      diamondScaled[6][1],
+      "L",
+      diamondScaled[10][0],
+      diamondScaled[10][1],
+      "L",
+      diamondScaled[8][0],
+      diamondScaled[8][1],
+      "M",
+      diamondScaled[6][0],
+      diamondScaled[6][1],
+      "L",
+      diamondScaled[9][0],
+      diamondScaled[9][1],
+      "L",
+      diamondScaled[7][0],
+      diamondScaled[7][1]
+    ].join(' ');
+
+    svg.path(diamondShape).attr({"stroke" : "hsl(170,97,47)", "stroke-width" : "3.5"});
+
+    // Draw the nodes
+    for (var i = 0; i < nodes.length; i++) {
+      svg.circle(nodes[i].pos[0], nodes[i].pos[1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
+    }
+
+    for (var i = 0; i < diamondScaled.length; i++) {
+      svg.circle(diamondScaled[i][0], diamondScaled[i][1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
+    }
+
 });
