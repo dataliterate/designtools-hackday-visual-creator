@@ -438,4 +438,7 @@ article {
         -ms-flex-order: 1;
             order: 1;
   }
+  .j__timetable--short, .j__timetable--long, .j__text--short, .j__text--long {
+    min-height: 0px !important;
+  }
 }

@@ -30,8 +30,18 @@
   }
 
   $(document).ready(function()  {
-    var h = $(".j__timetable--long").outerHeight();
-    $(".j__timetable--short").css({"min-height": h });
+    var ht1 = $(".j__timetable--long").outerHeight();
+    var ht2 = $(".j__timetable--short").outerHeight();
+    var ht = Math.max(ht1, ht2);
+    $(".j__timetable--short").css({"min-height": ht });
+    $(".j__timetable--long").css({"min-height": ht });
+
+    var ht1 = $(".j__text--long").outerHeight();
+    var ht2 = $(".j__text--short").outerHeight();
+    var ht = Math.max(ht1, ht2);
+    $(".j__text--short").css({"min-height": ht });
+    $(".j__text--long").css({"min-height": ht });
+
 
     setInterval(function() {
       $("#InnerGroup path").each(function() {
@@ -154,8 +164,10 @@
           <p>Hacking, hacking, hacking. The team and facilitators will take care of your well-being. Healthy food and drinks will be served.</p>
         </div>
 
-        <p>The hackday has a capacity of max. 20 participants. The selection process emphasizes on participant diversity to establish a well balanced blend of people and strengths to build great things.</p>
-        <p>There are 3 sponsored scholarships available for people from abroad. Travel and accommodation will be covered.</p>
+        <div class="j__text--long">
+          <p>The hackday has a capacity of max. 20 participants. The selection process emphasizes on participant diversity to establish a well balanced blend of people and strengths to build great things.</p>
+          <p>There are 3 sponsored scholarships available for people from abroad. Travel and accommodation will be covered.</p>
+        </div>
 
         <a href="https://designtoolshackday.typeform.com/to/OFpZXP" class="button" target="_blank">Apply now</a>
 
@@ -173,8 +185,10 @@
           <p> Hack Demos &amp; Drinks</p>
         </div>
 
-        <p>* Marco Boerries will talk about building an adaptive UI framework across multiple device contexts. Bohemian Coding will introduce the Sketch API.
-        50 seats available.</p>
+        <div class="j__text--short">
+          <p>* Marco Boerries will talk about building an adaptive UI framework across multiple device contexts. Bohemian Coding will introduce the Sketch API.
+          50 seats available.</p>
+        </div>
 
         <a href="https://designtoolshackday.typeform.com/to/dA1CKD" target="_blank" class="button">Register</a>
       </section>
