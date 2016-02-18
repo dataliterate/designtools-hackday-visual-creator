@@ -210,7 +210,7 @@ a {
 }
 
 .button:hover {
-  background-color: #03a68b;
+  background-color: #03c9a8;
 }
 
 a.a--invisible {
@@ -319,6 +319,10 @@ p.text--small {
   border-color: #03d8b5;
 }
 
+.solid--primary--dark {
+  background-color: #03c9a8;
+}
+
 .m__identity {
   text-align: center;
 }
@@ -341,6 +345,20 @@ article {
 
 .o__header img {
   max-width: 300px;
+}
+
+.o__header .o__header__top {
+  padding: 1rem 0;
+}
+
+.o__header .o__header__top img {
+  height: 40px;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.o__header .o__header__top .precious {
+  padding: .4rem;
 }
 
 .o__footer .o__footer__legallinks {
