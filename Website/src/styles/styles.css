@@ -323,6 +323,10 @@ p.text--small {
   background-color: #03c9a8;
 }
 
+.solid--black--transparent {
+  background-color: rgba(26, 26, 26, 0.1);
+}
+
 .m__identity {
   text-align: center;
 }
@@ -449,7 +453,7 @@ article {
   .o__identities--wide .m__identity:last-child {
     margin-bottom: 0;
   }
-  .h__responsive--marg inTop {
+  .h__responsive--marginTop {
     margin-top: 5rem;
   }
   .h__guests {

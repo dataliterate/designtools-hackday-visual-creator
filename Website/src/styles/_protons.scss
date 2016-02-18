@@ -30,9 +30,11 @@ $resonsiveBreakpoint: 800px;
 //**************************** Colors ****************************//
 
 $black: hsl(0,0,10%);
+$black_transparent: hsla(0,0,10%, .1);
+
 $white: hsl(0,0,100%);
 
-$primary: hsl(170,97,43%);
+$primary: hsl(170,97%,43%);
 $primary_dark: darken($primary, 3%);
 //$primary: #F7C873;
 //$secondary: #F7C873; // Dottergelb
