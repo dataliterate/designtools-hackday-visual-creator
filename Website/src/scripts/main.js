@@ -29,29 +29,87 @@ $(document).ready(function()  {
   var width = $(window).width();
   var height = $("#svg").height() + 100;
 
+  //**************************** Diamond ****************************//
+
+  var diamond = [
+    [0, 26],
+    [12, 10],
+    [33, 0],
+    [67, 0],
+    [86, 10],
+    [100, 26],
+    [50, 96],
+
+    // Inner
+    [33, 19],
+    [67, 19],
+    [20, 42],
+    [80, 42]
+  ];
+
+  var diamondScaled = diamond.map(function(point) {
+    var pointNew = [];
+    pointNew[0] = point[0] * (height / 200) + (width / 5) * 3;
+    pointNew[1] = point[1] * (height / 200) + (height / 5);
+
+    return pointNew;
+  });
 
   //**************************** Create Nodes ****************************//
   var nodes = [];
 
-  var nodesX = width / 100;
-  var nodesY = height / 100;
+  var nodesX = width / 100 + 1;
+  var nodesY = height / 100 + 1;
 
   // Setup boundaries
   nodes = nodes.concat([
     {
-      "pos" : [-100, -100],
+      "pos" : [-200, -200],
       "connectedTo" : [],
       "edges" : []
     }, {
-      "pos" : [width + 100, -100],
+      "pos" : [width + 200, -200],
       "connectedTo" : [],
       "edges" : []
     }, {
-      "pos" : [width + 100, height + 100],
+      "pos" : [width + 200, height + 200],
       "connectedTo" : [],
       "edges" : []
     }, {
-      "pos" : [-100, height + 100],
+      "pos" : [-200, height + 200],
+      "connectedTo" : [],
+      "edges" : []
+    }
+  ]);
+
+  // Add (outer) diamond points to nodes
+  nodes = nodes.concat([
+    {
+      "pos" : [diamondScaled[0][0], diamondScaled[0][1]],
+      "connectedTo" : [],
+      "edges" : []
+    }, {
+      "pos" : [diamondScaled[1][0], diamondScaled[1][1]],
+      "connectedTo" : [],
+      "edges" : []
+    }, {
+      "pos" : [diamondScaled[2][0], diamondScaled[2][1]],
+      "connectedTo" : [],
+      "edges" : []
+    }, {
+      "pos" : [diamondScaled[3][0], diamondScaled[3][1]],
+      "connectedTo" : [],
+      "edges" : []
+    }, {
+      "pos" : [diamondScaled[4][0], diamondScaled[4][1]],
+      "connectedTo" : [],
+      "edges" : []
+    }, {
+      "pos" : [diamondScaled[5][0], diamondScaled[5][1]],
+      "connectedTo" : [],
+      "edges" : []
+    }, {
+      "pos" : [diamondScaled[6][0], diamondScaled[6][1]],
       "connectedTo" : [],
       "edges" : []
     }
@@ -93,7 +151,16 @@ $(document).ready(function()  {
     [0, 1],
     [1, 2],
     [2, 3],
-    [3, 0]
+    [3, 0],
+
+    // Diamond
+    [4, 5],
+    [5, 6],
+    [6, 7],
+    [7, 8],
+    [8, 9],
+    [9, 10],
+    [10, 4]
   ];
 
   // Calculate triangles
