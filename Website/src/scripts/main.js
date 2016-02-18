@@ -241,7 +241,7 @@ $(document).ready(function()  {
 
   // Draw diamond
 
-  var diamonShapeAttribute = {"stroke" : "hsl(170,97,48)", "stroke-width" : "3.5"};
+  var diamonShapeAttribute = {"stroke" : "hsl(170,97,47)", "stroke-width" : "3.5"};
 
   var diamondShapeSVG = svg.path(diamondShapePath.join(' ')).attr(diamonShapeAttribute);
 
