@@ -70,16 +70,26 @@ $(document).ready(function()  {
 
   // Transfrom points
   var diamondPointsMapped = diamondPoints.map(function(point) {
-    point[0] = point[0] * (height / 200) + (width / 5) * 3;
-    point[1] = point[1] * (height / 200) + (height / 5);
+    var pointNew = [];
+    pointNew[0] = point[0] * (height / 200) + (width / 5) * 3;
+    pointNew[1] = point[1] * (height / 200) + (height / 5);
 
-    return point;
+    return pointNew;
+  });
+
+  var diamondPointsMappedBig = diamondPoints.map(function(point) {
+    var pointNew = [];
+    pointNew[0] = point[0] * (height / 160) + (width / 5) * 3 - (height / 170)*10;
+    pointNew[1] = point[1] * (height / 160) + (height / 5) - (height / 170)*8;
+
+    return pointNew;
   });
 
   var nodesMapped = nodes.map(function(point) {
-    point[0] = point[0] * (width / (nodesX - 2)) - (width / (nodesX - 2));
-    point[1] = point[1] * (height / (nodesY - 2)) - (height / (nodesY - 2));
-    return point;
+    var pointNew = [];
+    pointNew[0] = point[0] * (width / (nodesX - 2)) - (width / (nodesX - 2));
+    pointNew[1] = point[1] * (height / (nodesY - 2)) - (height / (nodesY - 2));
+    return pointNew;
   });
 
   // Create the svg shape of the diamond
@@ -91,6 +101,15 @@ $(document).ready(function()  {
   }
   diamondShapePath.push(diamondPointsMapped[0][0]);
   diamondShapePath.push(diamondPointsMapped[0][1]);
+
+  var diamondShapePathBig = ["M"];
+  for (var i = 0; i < 7; i++) {
+    diamondShapePathBig.push(diamondPointsMappedBig[i][0]);
+    diamondShapePathBig.push(diamondPointsMappedBig[i][1]);
+    diamondShapePathBig.push("L");
+  }
+  diamondShapePathBig.push(diamondPointsMappedBig[0][0]);
+  diamondShapePathBig.push(diamondPointsMappedBig[0][1]);
 
   var diamondShapeInner1 = [
     "M",
@@ -163,15 +182,20 @@ $(document).ready(function()  {
 
   var diamondShapeSVG = svg.path(diamondShapePath.join(' '));
 
+  var diamondShapeBigSVG = svg.path(diamondShapePathBig.join(' ')).attr({"fill" : "red"});
+
   // Delete nodes that are inside the diamond
   var i = nodes.length;
 
   while (i--)  {
     if (Snap.path.isPointInside(diamondShapeSVG, nodesMapped[i][0], nodesMapped[i][1])) {
       nodesMapped.splice(i, 1);
+    } else if (Snap.path.isPointInside(diamondShapeBigSVG, nodesMapped[i][0], nodesMapped[i][1])) {
+      nodesMapped.splice(i, 1);
     }
   }
 
+  diamondShapeBigSVG.remove();
   diamondShapeSVG.remove();
 
   // Definde edges/holes
