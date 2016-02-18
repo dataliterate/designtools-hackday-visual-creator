@@ -201,11 +201,16 @@ a {
   display: inline-block;
   text-decoration: none;
   background-color: #03d8b5;
+  transition: background-color .2s;
   color: white;
   padding: .2em .5em .3em .5em;
   border-radius: .25em;
   margin-left: -.25em;
   margin-top: 1em;
+}
+
+.button:hover {
+  background-color: #03a68b;
 }
 
 a.a--invisible {
