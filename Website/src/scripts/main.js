@@ -55,6 +55,14 @@ $(document).ready(function()  {
     return pointNew;
   });
 
+  var diamondScaledBig = diamond.map(function(point) {
+    var pointNew = [];
+    pointNew[0] = point[0] * (height / 170) + (width / 5) * 3 - (height / 170)*7.5;
+    pointNew[1] = point[1] * (height / 170) + (height / 5) - (height / 170)*10;
+
+    return pointNew;
+  });
+
   //**************************** Create Nodes ****************************//
   var nodes = [];
 
@@ -116,6 +124,9 @@ $(document).ready(function()  {
   ]);
 
   // Create random nodes
+
+  var randomNodes = [];
+
   for (var x = 0; x < nodesX; x++)  {
     for (var y = 0; y < nodesY; y++)  {
       var node = {
@@ -127,9 +138,52 @@ $(document).ready(function()  {
         "edges" : []
       };
 
-      nodes.push(node);
+      randomNodes.push(node);
     }
   }
+
+  // Throughout random nodes that are close to or inside the diamond
+
+  var diamondShapeBig = [
+    "M",
+    diamondScaledBig[0][0],
+    diamondScaledBig[0][1],
+    "L",
+    diamondScaledBig[1][0],
+    diamondScaledBig[1][1],
+    "L",
+    diamondScaledBig[2][0],
+    diamondScaledBig[2][1],
+    "L",
+    diamondScaledBig[3][0],
+    diamondScaledBig[3][1],
+    "L",
+    diamondScaledBig[4][0],
+    diamondScaledBig[4][1],
+    "L",
+    diamondScaledBig[5][0],
+    diamondScaledBig[5][1],
+    "L",
+    diamondScaledBig[6][0],
+    diamondScaledBig[6][1],
+    "L",
+    diamondScaledBig[0][0],
+    diamondScaledBig[0][1],
+  ].join(' ');
+
+  var diamondShapeBigSVG = svg.path(diamondShapeBig).attr({"stroke" : "hsl(170,97,37)", "stroke-width" : "3.5"});
+
+  // Delete nodes that are inside the diamond
+  var i = randomNodes.length;
+
+  while (i--)  {
+    if (Snap.path.isPointInside(diamondShapeBigSVG, randomNodes[i].pos[0], randomNodes[i].pos[1])) {
+      randomNodes.splice(i, 1);
+    }
+  }
+
+  diamondShapeBigSVG.remove();
+  nodes = nodes.concat(randomNodes);
 
   //**************************** Do the Math ****************************//
 
@@ -291,7 +345,7 @@ $(document).ready(function()  {
       diamondScaled[7][1]
     ].join(' ');
 
-    svg.path(diamondShape).attr({"stroke" : "hsl(170,97,47)", "stroke-width" : "3.5"});
+    svg.path(diamondShape).attr({"stroke" : "hsl(170,97,37)", "stroke-width" : "3.5"});
 
     // Draw the nodes
     for (var i = 0; i < nodes.length; i++) {
