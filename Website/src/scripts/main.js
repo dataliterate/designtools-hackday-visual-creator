@@ -81,38 +81,47 @@ $(document).ready(function()  {
   var svgMap = Snap("#svg-map");
 
   var width = $(window).width();
-  var height = $("#svg").height() + 100;
+  var centerWidth = $(".g__center").width();
+  var height = $("#svg").height() + 00;
 
   //**************************** Diamond ****************************//
 
   var diamond = [
-    [0, 26],
-    [12, 10],
-    [33, 0],
-    [67, 0],
-    [86, 10],
-    [100, 26],
-    [50, 96],
+    [0, 0.26],
+    [0.12, 0.1],
+    [0.33, 0],
+    [0.67, 0],
+    [0.86, 0.1],
+    [1, 0.26],
+    [0.5, 0.96],
 
     // Inner
-    [33, 19],
-    [67, 19],
-    [20, 42],
-    [80, 42]
+    [0.33, 0.19],
+    [0.67, 0.19],
+    [0.20, 0.42],
+    [0.80, 0.42]
   ];
 
   var diamondScaled = diamond.map(function(point) {
+    var size = (centerWidth/12)*4;
+    var positionX = (width - centerWidth) / 2 + centerWidth - size;
+    var positionY = (height - size) / 2;
+
     var pointNew = [];
-    pointNew[0] = point[0] * (height / 200) + (width / 5) * 3;
-    pointNew[1] = point[1] * (height / 200) + (height / 6);
+    pointNew[0] = point[0] * size + positionX;
+    pointNew[1] = point[1] * size + positionY;
 
     return pointNew;
   });
 
   var diamondScaledBig = diamond.map(function(point) {
+    var size = (centerWidth/12)*4 + (centerWidth/12);
+    var positionX = (width - centerWidth) / 2 + centerWidth - size + (centerWidth/24);
+    var positionY = (height - size) / 2 + + (centerWidth/48);
+
     var pointNew = [];
-    pointNew[0] = point[0] * (height / 170) + (width / 5) * 3 - (height / 170)*7.5;
-    pointNew[1] = point[1] * (height / 170) + (height / 5) - (height / 170)*10;
+    pointNew[0] = point[0] * size + positionX;
+    pointNew[1] = point[1] * size + positionY;
 
     return pointNew;
   });
@@ -225,7 +234,7 @@ $(document).ready(function()  {
     diamondScaledBig[0][1],
   ].join(' ');
 
-  var diamondShapeBigSVG = svg.path(diamondShapeBig);
+  var diamondShapeBigSVG = svg.path(diamondShapeBig).attr({"fill" : "red"});
 
   // Delete nodes that are inside the diamond
   var i = randomNodes.length;
