@@ -39,6 +39,12 @@
 
 @media (max-width: $resonsiveBreakpoint) {
 
+  .o__header {
+    .title  {
+      margin-bottom: 200px;
+    }
+  }
+
   // Increase Touch-Target size
   .button {
     padding: .55em 1em .5em 1em;

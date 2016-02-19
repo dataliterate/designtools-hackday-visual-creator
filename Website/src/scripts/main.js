@@ -82,7 +82,7 @@ $(document).ready(function()  {
 
   var width = $(window).width();
   var centerWidth = $(".g__center").width();
-  var height = $("#svg").height() + 00;
+  var height = $("#svg").height();
 
   //**************************** Diamond ****************************//
 
@@ -103,9 +103,16 @@ $(document).ready(function()  {
   ];
 
   var diamondScaled = diamond.map(function(point) {
-    var size = (centerWidth/12)*4;
-    var positionX = (width - centerWidth) / 2 + centerWidth - size;
-    var positionY = (height - size) / 2;
+    if (width >= 800) {
+      var size = (centerWidth/12)*4;
+      var positionX = (width - centerWidth) / 2 + centerWidth - size;
+      var positionY = (height - size) / 2;
+    } else {
+      var size = (centerWidth/12)*8;
+      var positionX = centerWidth / 2 - size / 2;
+      var positionY = (height - size) / 2;
+    }
+
 
     var pointNew = [];
     pointNew[0] = point[0] * size + positionX;
@@ -115,9 +122,15 @@ $(document).ready(function()  {
   });
 
   var diamondScaledBig = diamond.map(function(point) {
-    var size = (centerWidth/12)*4 + (centerWidth/12);
-    var positionX = (width - centerWidth) / 2 + centerWidth - size + (centerWidth/24);
-    var positionY = (height - size) / 2 + + (centerWidth/48);
+    if (width >= 800) {
+      var size = (centerWidth/12)*4 + (centerWidth/12);
+      var positionX = (width - centerWidth) / 2 + centerWidth - size + (centerWidth/24);
+      var positionY = (height - size) / 2 + (centerWidth/48);
+    } else {
+      var size = (centerWidth/12)*10;
+      var positionX = centerWidth / 2 - size / 2;
+      var positionY = (height - size) / 2 + (centerWidth/48);
+    }
 
     var pointNew = [];
     pointNew[0] = point[0] * size + positionX;
