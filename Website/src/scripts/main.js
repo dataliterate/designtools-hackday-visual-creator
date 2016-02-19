@@ -33,8 +33,8 @@ function changeColor(hue, sat) {
   var color = hslToHex([
     {
       // Teal
-      verylight: "hsl(" + hue + "," + sat + ",75)",
-      light: "hsl(" + hue + "," + sat + ",43)",
+      verylight: "hsl(" + hue + "," + sat + ",85)",
+      light: "hsl(" + hue + "," + sat + ",45)",
       regular: "hsl(" + hue + "," + sat + ",40)",
     }
   ]);
@@ -411,7 +411,7 @@ function Network(targetSelector, color)  {
       diamondPoints[7][1]
     ].join(' ');
 
-    paper.path(diamondPath).attr({"stroke" : colorVerylight, "class" : "diamond"});
+    paper.path(diamondPath).attr({"stroke" : "white", "class" : "diamond"});
 
     for (var i = 0; i < diamondPoints.length; i++) {
       paper.circle(diamondPoints[i][0], diamondPoints[i][1], 7).attr({"fill" : colorRegular, "stroke" : "none", "class" : "node"});
@@ -437,7 +437,7 @@ function Network(targetSelector, color)  {
 
       // Light up current edge
       var e = Snap.select(target + " [edge='" + self.currentEdge + "']");
-      e.attr({"stroke" : color});
+      e.attr({"stroke" : "white"});
 
       // In a second light down the current edge
       setTimeout(function() {
@@ -465,7 +465,7 @@ function Network(targetSelector, color)  {
     $(target).css({"background-color" : color.regular});
     Snap.selectAll(target + " .node").attr({"fill" : color.regular});
     paper.attr({"stroke" : color.light});
-    Snap.selectAll(target + " .diamond").attr({"stroke" : color.verylight});
+    //Snap.selectAll(target + " .diamond").attr({"stroke" : color.verylight});
   };
 
   //**************************** RUN FOR IT ****************************//
