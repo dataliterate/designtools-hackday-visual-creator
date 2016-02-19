@@ -1,5 +1,24 @@
-@import 'protons';
-@import 'atoms';
-@import 'molecules';
-@import 'organisms';
-@import 'hacks';
+@import 'reset';
+
+html  {
+  height: 100%;
+}
+
+body  {
+  height: 100%;
+}
+
+#svg  {
+  width: 100%;
+  height: 100%;
+
+  path  {
+    transition: stroke 1s;
+  }
+}
+
+// @import 'protons';
+// @import 'atoms';
+// @import 'molecules';
+// @import 'organisms';
+// @import 'hacks';
