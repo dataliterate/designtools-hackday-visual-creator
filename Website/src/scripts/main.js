@@ -27,32 +27,37 @@ $(document).ready(function()  {
   var colors = [
     {
       // Teal
-      light: "hsl(170,97,52)",
-      regular: "hsl(170,97,43)",
-      dark: "hsl(170,97,40)",
-      verydark: "hsl(170,92,37)"
+      verylight: "hsl(170,97,75)",
+      light: "hsl(170,97,43)",
+      regular: "hsl(170,97,40)",
+      dark: "hsl(170,97,37)",
+      //erydark: "hsl(170,92,37)"
     }, {
       // Blue
+      verylight: "hsl(212,70,94)",
       light: "hsl(212,70,74)",
       regular: "hsl(212,70,68)",
-      dark: "hsl(212,70,64)",
-      verydark: "hsl(212,65,60)"
+      dark: "hsl(212,54,60)",
+      //verydark: "hsl(212,65,60)"
     }, {
       // Fuchsia
+      verylight: "hsl(357,100,95)",
       light: "hsl(357,100,75)",
       regular: "hsl(357,100,71)",
-      dark: "hsl(357,100,68)",
-      verydark: "hsl(357,90,63)"
+      dark: "hsl(357,85,65)",
+      //verydark: "hsl(357,90,63)"
     }, {
       // Orange
+      verylight: "hsl(43,74,92)",
       light: "hsl(43,74,67)",
       regular: "hsl(43,75,60)",
-      dark: "hsl(43,72,53)",
-      verydark: "hsl(43,70,48)"
+      dark: "hsl(43,65,53)",
+      //verydark: "hsl(43,70,48)"
     }
   ];
 
   color = colors[utils.getRandomInt(0, colors.length - 1)];
+  //color = colors[3];
 
   var colorHex = tinycolor(color.regular).toHexString();
   $(".solid--primary").css({"background-color" : colorHex});
@@ -72,7 +77,7 @@ $(document).ready(function()  {
 
   //////////////////////////// HEADER ////////////////////////////
 
-  var svg = Snap("#svg").attr({"stroke" : color.dark});
+  var svg = Snap("#svg").attr({"stroke" : color.light});
   var svgMap = Snap("#svg-map");
 
   var width = $(window).width();
@@ -394,7 +399,7 @@ $(document).ready(function()  {
       diamondScaled[7][1]
     ].join(' ');
 
-    svg.path(diamondShape).attr({"stroke" : color.verydark, "stroke-width" : "3.5"});
+    svg.path(diamondShape).attr({"stroke" : color.verylight, "stroke-width" : "3.5"});
 
     // Draw the nodes
     for (var i = 0; i < nodes.length; i++) {
@@ -424,7 +429,7 @@ $(document).ready(function()  {
   lastEdge3 = 0;
   currentEdge3 = 0;
   thisEdge3 = 0;
-  setInterval(tick, 200);
+  setInterval(tick, 100);
 
 });
 
@@ -437,7 +442,7 @@ function tick() {
   }
 
   var e = Snap.select("[edge='" + thisEdge + "']");
-  e.attr({"stroke" : color.light});
+  e.attr({"stroke" : color.verylight});
 
   var from = e.attr("from");
   var to = e.attr("to");
@@ -462,7 +467,7 @@ function tick() {
   }
 
   var e2 = Snap.select("[edge='" + thisEdge2 + "']");
-  e2.attr({"stroke" : color.light});
+  e2.attr({"stroke" : color.verylight});
 
   var from2 = e2.attr("from");
   var to2 = e2.attr("to");
@@ -487,7 +492,7 @@ function tick() {
   }
 
   var e3 = Snap.select("[edge='" + thisEdge3 + "']");
-  e3.attr({"stroke" : color.light});
+  e3.attr({"stroke" : color.verylight});
 
   var from3 = e3.attr("from");
   var to3 = e3.attr("to");
