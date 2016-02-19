@@ -7,7 +7,8 @@
     "cdt2d": "^1.0.0",
     "delaunay-fast": "git+https://github.com/ironwallaby/delaunay.git",
     "jquery": "^2.2.0",
-    "snapsvg": "github:sethvincent/Snap.svg#a34b8af69b"
+    "snapsvg": "github:sethvincent/Snap.svg#a34b8af69b",
+    "tinycolor2": "^1.3.0"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",

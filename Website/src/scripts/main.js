@@ -3,6 +3,7 @@ var utils = require("./utilities.js");
 var Snap = require('snapsvg');
 //var Delaunay = require("delaunay-fast");
 var cdt2d = require('cdt2d');
+var tinycolor = require("tinycolor2");
 
 $(document).ready(function()  {
   //////////////////////////// VERTICAL ALGIN ////////////////////////////
@@ -22,9 +23,56 @@ $(document).ready(function()  {
   $(".j__text--short").css({"min-height": ht });
   $(".j__text--long").css({"min-height": ht });
 
+
+  var colors = [
+    {
+      // Teal
+      light: "hsl(170,97,52)",
+      regular: "hsl(170,97,43)",
+      dark: "hsl(170,97,40)",
+      verydark: "hsl(170,92,37)"
+    }, {
+      // Blue
+      light: "hsl(212,70,74)",
+      regular: "hsl(212,70,68)",
+      dark: "hsl(212,70,64)",
+      verydark: "hsl(212,65,60)"
+    }, {
+      // Fuchsia
+      light: "hsl(357,100,75)",
+      regular: "hsl(357,100,71)",
+      dark: "hsl(357,100,68)",
+      verydark: "hsl(357,90,63)"
+    }, {
+      // Orange
+      light: "hsl(43,74,67)",
+      regular: "hsl(43,75,60)",
+      dark: "hsl(43,72,53)",
+      verydark: "hsl(43,70,48)"
+    }
+  ];
+
+  color = colors[utils.getRandomInt(0, colors.length - 1)];
+
+  var colorHex = tinycolor(color.regular).toHexString();
+  $(".solid--primary").css({"background-color" : colorHex});
+  $(".text--primary").css({"color" : colorHex});
+  $("h1").css({"color" : colorHex});
+  $("h2").css({"color" : colorHex});
+  $(".button").css({"background-color" : colorHex});
+
+  var colorHexDark = tinycolor(color.dark).toHexString();
+  $(".solid--primary--dark").css({"background-color" : colorHexDark});
+  $(".button").hover(function() { $(this).css({"background-color" : colorHexDark}) }, function() { $(this).css({"background-color" : colorHex}) });
+
+
+  console.log(color);
+
+
+
   //////////////////////////// HEADER ////////////////////////////
 
-  var svg = Snap("#svg");
+  var svg = Snap("#svg").attr({"stroke" : color.dark});
   var svgMap = Snap("#svg-map");
 
   var width = $(window).width();
@@ -172,7 +220,7 @@ $(document).ready(function()  {
     diamondScaledBig[0][1],
   ].join(' ');
 
-  var diamondShapeBigSVG = svg.path(diamondShapeBig).attr({"stroke" : "hsl(170,97,37)", "stroke-width" : "3.5"});
+  var diamondShapeBigSVG = svg.path(diamondShapeBig);
 
   // Delete nodes that are inside the diamond
   var i = randomNodes.length;
@@ -346,11 +394,11 @@ $(document).ready(function()  {
       diamondScaled[7][1]
     ].join(' ');
 
-    svg.path(diamondShape).attr({"stroke" : "hsl(170,97,36)", "stroke-width" : "3.5"});
+    svg.path(diamondShape).attr({"stroke" : color.verydark, "stroke-width" : "3.5"});
 
     // Draw the nodes
     for (var i = 0; i < nodes.length; i++) {
-      svg.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" :"#03d8b5", "stroke" : "none"});
+      svg.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color.regular, "stroke" : "none"});
     }
 
     for (var i = 0; i < nodes.length; i++) {
@@ -358,7 +406,7 @@ $(document).ready(function()  {
     }
 
     for (var i = 0; i < diamondScaled.length; i++) {
-      svg.circle(diamondScaled[i][0], diamondScaled[i][1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
+      svg.circle(diamondScaled[i][0], diamondScaled[i][1], 7).attr({"fill" : color.regular, "stroke" : "none"});
     }
 
 
@@ -389,7 +437,7 @@ function tick() {
   }
 
   var e = Snap.select("[edge='" + thisEdge + "']");
-  e.attr({"stroke" : "hsl(170,97,52)"});
+  e.attr({"stroke" : color.light});
 
   var from = e.attr("from");
   var to = e.attr("to");
@@ -414,7 +462,7 @@ function tick() {
   }
 
   var e2 = Snap.select("[edge='" + thisEdge2 + "']");
-  e2.attr({"stroke" : "hsl(170,97,52)"});
+  e2.attr({"stroke" : color.light});
 
   var from2 = e2.attr("from");
   var to2 = e2.attr("to");
@@ -439,7 +487,7 @@ function tick() {
   }
 
   var e3 = Snap.select("[edge='" + thisEdge3 + "']");
-  e3.attr({"stroke" : "hsl(170,97,52)"});
+  e3.attr({"stroke" : color.light});
 
   var from3 = e3.attr("from");
   var to3 = e3.attr("to");
