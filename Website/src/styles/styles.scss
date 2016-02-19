@@ -2,6 +2,7 @@
 
 html  {
   height: 100%;
+  font-size: 12px;
 }
 
 body  {
@@ -15,6 +16,20 @@ body  {
   path  {
     transition: stroke 1s;
   }
+}
+
+.ui {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  padding: 1rem;
+  background-color: hsla(0,0,0,.2);
+  color: black;
+  font-family: sans-serif;
+}
+
+input {
+  background: none;
 }
 
 // @import 'protons';

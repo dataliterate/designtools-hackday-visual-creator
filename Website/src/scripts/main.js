@@ -7,14 +7,40 @@ var tinycolor = require("tinycolor2");
 
 //**************************** Global Vars ****************************//
 var colors = getColors();
-
+var hue = 150;
+var sat = 60;
 //**************************** Run ****************************//
 $(document).ready(function()  {
 
   // Init first Network
   var color = colors[utils.getRandomInt(0, colors.length - 1)];
-  var mainNetwork = new Network("#svg", color);
+  mainNetwork = new Network("#svg", color);
+
+  changeColor(hue, sat);
+
+  $("#hue").on('change', function () {
+    hue = $(this).val();
+    changeColor(hue, sat);
+  });
+
+  $("#sat").on('change', function () {
+    sat = $(this).val();
+    changeColor(hue, sat);
+  });
 });
+
+function changeColor(hue, sat) {
+  var color = hslToHex([
+    {
+      // Teal
+      verylight: "hsl(" + hue + "," + sat + ",75)",
+      light: "hsl(" + hue + "," + sat + ",43)",
+      regular: "hsl(" + hue + "," + sat + ",40)",
+    }
+  ]);
+
+  mainNetwork.changeColor(mainNetwork.paper, mainNetwork.target, color[0]);
+}
 
 
 
@@ -65,7 +91,7 @@ function Network(targetSelector, color)  {
       nodes: nodes,
       hole: hole
     };
-  }
+  };
 
   //**************************** Create Boundaries ****************************//
   this.createDiamond = function(width, height) {
@@ -158,7 +184,7 @@ function Network(targetSelector, color)  {
       diamondPoints: diamondScaled,
       diamondPointsBig: diamondScaledBig
     };
-  }
+  };
 
   //**************************** Create Random Nodes ****************************//
   this.createRandomNodes = function(width, height, nodesSpace) {
@@ -182,7 +208,7 @@ function Network(targetSelector, color)  {
       }
     }
     return randomNodes;
-  }
+  };
 
   //**************************** Delete the random nodes that are to close to the diamond ****************************//
   this.throwOutRandomNodesInDiamond = function(randomNodes, diamondPointsBig, paper) {
@@ -226,7 +252,7 @@ function Network(targetSelector, color)  {
 
     diamondSVGBig.remove();
     return randomNodes;
-  }
+  };
 
   //**************************** Calculate the network ****************************//
   this.calculateNetwork = function(nodes, hole)  {
@@ -288,7 +314,7 @@ function Network(targetSelector, color)  {
       nodes: nodes,
       edges: edges
     };
-  }
+  };
 
   //**************************** Draw the network ****************************//
   this.drawNetwork = function(nodes, edges, paper, color) {
@@ -305,14 +331,14 @@ function Network(targetSelector, color)  {
         nodes[edges[i][1]].pos[1]
       ].join(' ');
 
-        paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1]});
+        paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1], "class" : "edge"});
     }
 
     // Draw nodes
     for (var i = 0; i < nodes.length; i++) {
-      paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none"});
+      paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node"});
     }
-  }
+  };
 
   //**************************** Draw the diamond ****************************//
   this.drawDiamond = function(diamondPoints, paper, colorVerylight, colorRegular) {
@@ -385,16 +411,16 @@ function Network(targetSelector, color)  {
       diamondPoints[7][1]
     ].join(' ');
 
-    paper.path(diamondPath).attr({"stroke" : colorVerylight});
+    paper.path(diamondPath).attr({"stroke" : colorVerylight, "class" : "diamond"});
 
     for (var i = 0; i < diamondPoints.length; i++) {
-      paper.circle(diamondPoints[i][0], diamondPoints[i][1], 7).attr({"fill" : colorRegular, "stroke" : "none"});
+      paper.circle(diamondPoints[i][0], diamondPoints[i][1], 7).attr({"fill" : colorRegular, "stroke" : "none", "class" : "node"});
     }
 
-  }
+  };
 
   //**************************** Draw lights ****************************//
-  this.Light = function(nodes, paper, color)  {
+  this.Light = function(nodes, paper, target, color)  {
     var self = this;
     this.nodes = nodes;
     this.currentNode = Math.floor(utils.getRandom(0, nodes.length));
@@ -410,7 +436,7 @@ function Network(targetSelector, color)  {
       }
 
       // Light up current edge
-      var e = Snap.select("[edge='" + self.currentEdge + "']");
+      var e = Snap.select(target + " [edge='" + self.currentEdge + "']");
       e.attr({"stroke" : color});
 
       // In a second light down the current edge
@@ -432,8 +458,15 @@ function Network(targetSelector, color)  {
     };
 
     this.interval = setInterval(this.move, 100, self);
-  }
+  };
 
+
+  this.changeColor = function(paper, target, color) {
+    $(target).css({"background-color" : color.regular});
+    Snap.selectAll(target + " .node").attr({"fill" : color.regular});
+    paper.attr({"stroke" : color.light});
+    Snap.selectAll(target + " .diamond").attr({"stroke" : color.verylight});
+  };
 
   //**************************** RUN FOR IT ****************************//
   this.nodes = [];
@@ -476,7 +509,7 @@ function Network(targetSelector, color)  {
   // Create lights
   this.lights = [];
   for (var i = 0; i < 6; i++) {
-    var light = new this.Light(this.nodes, this.paper, this.color.verylight);
+    var light = new this.Light(this.nodes, this.paper, this.target, this.color.verylight);
     this.lights.push(light);
   }
 }
@@ -515,6 +548,11 @@ function getColors()  {
     }
   ];
 
+  colors = hslToHex(colors);
+  return colors;
+}
+
+function hslToHex(colors) {
   // Convert HSL to Hex
   for (var i = 0; i < colors.length; i++) {
     for (var shade in colors[i])  {
