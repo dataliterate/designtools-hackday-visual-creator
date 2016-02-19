@@ -16,8 +16,7 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var browserify = require('browserify');
 
-gulp.task('default', ['watch'], function() {
-});
+gulp.task('default', ['watch'], function() {});
 
 //**************************** Pipelines ****************************//
 
@@ -38,7 +37,7 @@ gulp.task('scripts', function(){
     .bundle()
     .pipe(source('main.js'))
     .pipe(buffer())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('./dist/scripts/'))
     .pipe(browserSync.reload({

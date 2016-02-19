@@ -26,6 +26,10 @@ article {
     position: absolute;
     top: 0;
     left: 0;
+
+    path  {
+      transition: stroke 1s;
+    }
   }
 
   .o__header__top  {

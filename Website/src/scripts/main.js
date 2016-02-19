@@ -65,7 +65,7 @@ $(document).ready(function()  {
   });
 
   //**************************** Create Nodes ****************************//
-  var nodes = [];
+  nodes = [];
 
   var nodesX = width / 100 + 1;
   var nodesY = height / 100 + 1;
@@ -221,8 +221,7 @@ $(document).ready(function()  {
   // Calculate triangles
   var result = cdt2d(points, hole, {exterior: false});
 
-  var edges = [];
-
+  edges = [];
 
   //**************************** Parse the info  ****************************//
 
@@ -362,4 +361,99 @@ $(document).ready(function()  {
       svg.circle(diamondScaled[i][0], diamondScaled[i][1], 7).attr({"fill" :"#03d8b5", "stroke" : "none"});
     }
 
+
+  currentNode = Math.floor(utils.getRandom(0, nodes.length));
+  lastEdge = 0;
+  currentEdge = 0;
+  thisEdge = 0;
+
+  currentNode2 = Math.floor(utils.getRandom(0, nodes.length));
+  lastEdge2 = 0;
+  currentEdge2 = 0;
+  thisEdge2 = 0;
+
+  currentNode3 = Math.floor(utils.getRandom(0, nodes.length));
+  lastEdge3 = 0;
+  currentEdge3 = 0;
+  thisEdge3 = 0;
+  setInterval(tick, 200);
+
 });
+
+
+function tick() {
+
+  while (thisEdge == lastEdge)  {
+    currentEdge = Math.floor(utils.getRandom(0, nodes[currentNode].edges.length));
+    thisEdge = nodes[currentNode].edges[currentEdge];
+  }
+
+  var e = Snap.select("[edge='" + thisEdge + "']");
+  e.attr({"stroke" : "hsl(170,97,52)"});
+
+  var from = e.attr("from");
+  var to = e.attr("to");
+
+  setTimeout(function() {
+    e.attr({"stroke" : ""});
+  }, 1000);
+
+
+  lastEdge = thisEdge;
+
+  if (currentNode != from) {
+    currentNode = from;
+  } else {
+    currentNode = to;
+  }
+
+
+  while (thisEdge2 == lastEdge2)  {
+    currentEdge2 = Math.floor(utils.getRandom(0, nodes[currentNode2].edges.length));
+    thisEdge2 = nodes[currentNode2].edges[currentEdge2];
+  }
+
+  var e2 = Snap.select("[edge='" + thisEdge2 + "']");
+  e2.attr({"stroke" : "hsl(170,97,52)"});
+
+  var from2 = e2.attr("from");
+  var to2 = e2.attr("to");
+
+  setTimeout(function() {
+    e2.attr({"stroke" : ""});
+  }, 1000);
+
+
+  lastEdge2 = thisEdge2;
+
+  if (currentNode2 != from2) {
+    currentNode2 = from2;
+  } else {
+    currentNode2 = to2;
+  }
+
+
+  while (thisEdge3 == lastEdge3)  {
+    currentEdge3 = Math.floor(utils.getRandom(0, nodes[currentNode3].edges.length));
+    thisEdge3 = nodes[currentNode3].edges[currentEdge3];
+  }
+
+  var e3 = Snap.select("[edge='" + thisEdge3 + "']");
+  e3.attr({"stroke" : "hsl(170,97,52)"});
+
+  var from3 = e3.attr("from");
+  var to3 = e3.attr("to");
+
+  setTimeout(function() {
+    e3.attr({"stroke" : ""});
+  }, 1000);
+
+
+  lastEdge3 = thisEdge3;
+
+  if (currentNode3 != from3) {
+    currentNode3 = from3;
+  } else {
+    currentNode3 = to3;
+  }
+};
