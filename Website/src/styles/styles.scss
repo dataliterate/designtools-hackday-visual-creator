@@ -22,10 +22,28 @@ body  {
   position: fixed;
   bottom: 2rem;
   left: 2rem;
+  right: 2rem;
   padding: 1rem;
-  background-color: hsla(0,0,0,.2);
+  background-color: hsla(0,0,100,1);
   color: black;
   font-family: sans-serif;
+
+  opacity: .4;
+  transform: translateY(90%);
+  transition: all .4s;
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  //width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  input {
+    width: 100%;
+  }
 }
 
 // @import 'protons';
