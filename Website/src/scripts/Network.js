@@ -11,10 +11,13 @@ module.exports = function(targetSelector, color)  {
   this.width = $(this.target).outerWidth();
 
   this.color = color;
+  this.gap = 12;
+  this.diamondGap = 8;
+  this.nodeLength = 100;
 
   // Setup drawing paper
   $(this.target).css({"background-color" : this.color.regular});
-  this.paper.attr({"fill" : "none", "stroke" : this.color.light, "stroke-width" : "3"});
+  this.paper.attr({"fill" : "none", "stroke" : this.color.light, "stroke-width" : "3", "stroke-linecap" : "round"});
 
 
   //**************************** Create Boundaries ****************************//
@@ -175,12 +178,12 @@ module.exports = function(targetSelector, color)  {
   //**************************** Create Random Nodes ****************************//
   this.createRandomNodes = function(nodesSpace) {
     var randomNodes = [];
-    var nodesX = this.width / nodesSpace + 1;
-    var nodesY = this.height / nodesSpace + 1;
-    var nodesSpaceRandom = nodesSpace / 3;
+    var nodesX = this.width / nodesSpace + 2;
+    var nodesY = this.height / nodesSpace + 2;
+    var nodesSpaceRandom = nodesSpace / 4;
 
-    for (var x = 0; x < nodesX; x++)  {
-      for (var y = 0; y < nodesY; y++)  {
+    for (var x = -1; x < nodesX; x++)  {
+      for (var y = -1; y < nodesY; y++)  {
 
         var node = {
           "pos" : [
@@ -309,104 +312,92 @@ module.exports = function(targetSelector, color)  {
   };
 
   //**************************** Draw the network ****************************//
-  this.drawNetwork = function(nodes, edges, color) {
+  this.drawNetwork = function(nodes, edges) {
 
     // Draw edges
     for (var i = 0; i < edges.length; i++)  {
 
+      // Get the end and start point of the edge
+      var start = [this.nodes[this.edges[i][0]].pos[0], this.nodes[this.edges[i][0]].pos[1]];
+      var end = [this.nodes[this.edges[i][1]].pos[0],
+              this.nodes[this.edges[i][1]].pos[1]];
+
+      // Express the edge as a vector and normalize it
+      var vector = [end[0] - start[0], end[1] - start[1]];
+      var length = utils.getDistance(start[0], start[1], end[0], end[1]);
+      var normalizedVector = [vector[0]/length, vector[1]/length];
+      var gap = [normalizedVector[0] * this.gap, normalizedVector[1] * this.gap];
+
+      // Add / subtract it from the start and end position to create a gap
+      start[0] += gap[0];
+      start[1] += gap[1];
+      end[0] -= gap[0];
+      end[1] -= gap[1];
+
       var p = [
         "M",
-        nodes[edges[i][0]].pos[0],
-        nodes[edges[i][0]].pos[1],
+        start[0],
+        start[1],
         "L",
-        nodes[edges[i][1]].pos[0],
-        nodes[edges[i][1]].pos[1]
+        end[0],
+        end[1]
       ].join(" ");
 
       this.paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1], "class" : "edge"});
-    }
-
-    // Draw nodes
-    for (i = 0; i < nodes.length; i++) {
-      this.paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node", "node" : i});
     }
   };
 
   //**************************** Draw the diamond ****************************//
   this.drawDiamond = function(diamondPoints, colorRegular) {
-    var diamondPath = [
-      "M",
-      diamondPoints[0][0],
-      diamondPoints[0][1],
-      "L",
-      diamondPoints[1][0],
-      diamondPoints[1][1],
-      "L",
-      diamondPoints[2][0],
-      diamondPoints[2][1],
-      "L",
-      diamondPoints[3][0],
-      diamondPoints[3][1],
-      "L",
-      diamondPoints[4][0],
-      diamondPoints[4][1],
-      "L",
-      diamondPoints[5][0],
-      diamondPoints[5][1],
-      "L",
-      diamondPoints[6][0],
-      diamondPoints[6][1],
-      "L",
-      diamondPoints[0][0],
-      diamondPoints[0][1],
-      "M",
-      diamondPoints[1][0],
-      diamondPoints[1][1],
-      "L",
-      diamondPoints[7][0],
-      diamondPoints[7][1],
-      "L",
-      diamondPoints[8][0],
-      diamondPoints[8][1],
-      "L",
-      diamondPoints[4][0],
-      diamondPoints[4][1],
-      "M",
-      diamondPoints[5][0],
-      diamondPoints[5][1],
-      "L",
-      diamondPoints[10][0],
-      diamondPoints[10][1],
-      "L",
-      diamondPoints[9][0],
-      diamondPoints[9][1],
-      "L",
-      diamondPoints[0][0],
-      diamondPoints[0][1],
-      "M",
-      diamondPoints[6][0],
-      diamondPoints[6][1],
-      "L",
-      diamondPoints[10][0],
-      diamondPoints[10][1],
-      "L",
-      diamondPoints[8][0],
-      diamondPoints[8][1],
-      "M",
-      diamondPoints[6][0],
-      diamondPoints[6][1],
-      "L",
-      diamondPoints[9][0],
-      diamondPoints[9][1],
-      "L",
-      diamondPoints[7][0],
-      diamondPoints[7][1]
-    ].join(" ");
+    var diamondEdges = [
+      [diamondPoints[0], diamondPoints[1]],
+      [diamondPoints[1], diamondPoints[2]],
+      [diamondPoints[2], diamondPoints[3]],
+      [diamondPoints[3], diamondPoints[4]],
+      [diamondPoints[4], diamondPoints[5]],
+      [diamondPoints[5], diamondPoints[6]],
+      [diamondPoints[6], diamondPoints[0]],
+      [diamondPoints[1], diamondPoints[7]],
+      [diamondPoints[7], diamondPoints[8]],
+      [diamondPoints[8], diamondPoints[4]],
+      [diamondPoints[5], diamondPoints[10]],
+      [diamondPoints[10], diamondPoints[9]],
+      [diamondPoints[9], diamondPoints[0]],
+      [diamondPoints[6], diamondPoints[10]],
+      [diamondPoints[10], diamondPoints[8]],
+      [diamondPoints[6], diamondPoints[9]],
+      [diamondPoints[9], diamondPoints[7]]
+    ];
 
-    this.paper.path(diamondPath).attr({"stroke" : "white", "class" : "diamond"});
+    // Draw edges
+    for (var i = 0; i < diamondEdges.length; i++)  {
 
-    for (var i = 0; i < diamondPoints.length; i++) {
-      this.paper.circle(diamondPoints[i][0], diamondPoints[i][1], 7).attr({"fill" : colorRegular, "stroke" : "none", "class" : "node"});
+      // Get the end and start point of the edge
+      var start = [diamondEdges[i][0][0], diamondEdges[i][0][1]];
+      var end = [diamondEdges[i][1][0], diamondEdges[i][1][1]];
+
+      // Express the edge as a vector and normalize it
+      var vector = [end[0] - start[0], end[1] - start[1]];
+      var length = utils.getDistance(start[0], start[1], end[0], end[1]);
+      var normalizedVector = [vector[0]/length, vector[1]/length];
+      var gap = [normalizedVector[0] * this.diamondGap, normalizedVector[1] * this.diamondGap];
+
+      // Add / subtract it from the start and end position to create a gap
+      start[0] += gap[0];
+      start[1] += gap[1];
+      end[0] -= gap[0];
+      end[1] -= gap[1];
+
+      var p = [
+        "M",
+        start[0],
+        start[1],
+        "L",
+        end[0],
+        end[1]
+      ].join(" ");
+
+      this.paper.path(p).attr({"stroke" : "white"});
     }
 
   };
@@ -455,27 +446,40 @@ module.exports = function(targetSelector, color)  {
   //**************************** Change Color ****************************//
   this.changeColor = function(color) {
     $(this.target).css({"background-color" : color.regular});
-    Snap.selectAll(this.target + " .node").attr({"fill" : color.regular});
     this.paper.attr({"stroke" : color.light});
   };
 
   //**************************** Move nodes to updated position ****************************//
   this.moveNodes = function() {
     for (var i = 0; i < this.edges.length; i++)  {
+
+      // Get the end and start point of the edge
+      var start = [this.nodes[this.edges[i][0]].pos[0], this.nodes[this.edges[i][0]].pos[1]];
+      var end = [this.nodes[this.edges[i][1]].pos[0],
+              this.nodes[this.edges[i][1]].pos[1]];
+
+      // Express the edge as a vector and normalize it
+      var vector = [end[0] - start[0], end[1] - start[1]];
+      var length = utils.getDistance(start[0], start[1], end[0], end[1]);
+      var normalizedVector = [vector[0]/length, vector[1]/length];
+      var gap = [normalizedVector[0] * this.gap, normalizedVector[1] * this.gap];
+
+      // Add / subtract it from the start and end position to create a gap
+      start[0] += gap[0];
+      start[1] += gap[1];
+      end[0] -= gap[0];
+      end[1] -= gap[1];
+
       var p = [
         "M",
-        this.nodes[this.edges[i][0]].pos[0],
-        this.nodes[this.edges[i][0]].pos[1],
+        start[0],
+        start[1],
         "L",
-        this.nodes[this.edges[i][1]].pos[0],
-        this.nodes[this.edges[i][1]].pos[1]
+        end[0],
+        end[1]
       ].join(" ");
 
       Snap.select(".edge[edge='" + i + "']").attr({"path" : p });
-    }
-
-    for (i = 0; i < this.nodes.length; i++) {
-      Snap.select(".node[node='" + i + "']").attr({"cx" : this.nodes[i].pos[0], "cy" : this.nodes[i].pos[1] });
     }
   };
 
@@ -503,7 +507,7 @@ module.exports = function(targetSelector, color)  {
   }));
 
   // Create the random nodes (and make sure they are not withing the diamond)
-  this.randomNodes = this.createRandomNodes(100);
+  this.randomNodes = this.createRandomNodes(this.nodeLength);
   this.randomNodes = this.throwOutRandomNodesInDiamond(this.randomNodes, this.diamondPointsBig);
   this.nodes = this.nodes.concat(this.randomNodes);
 
