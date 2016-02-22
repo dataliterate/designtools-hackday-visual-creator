@@ -9,9 +9,6 @@ var hue = 0;
 var sat = 0;
 var lit = 0;
 
-var mouseX = undefined;
-var mouseY = undefined;
-
 var mainNetwork;
 
 //**************************** Run ****************************//
@@ -54,9 +51,6 @@ $(document).ready(function()  {
     $(".lit-num").text(lit + "%");
   });
 
-
-  setInterval(tick, 40, mainNetwork);
-
 });
 
 function changeColor(hue, sat, lit) {
@@ -73,45 +67,6 @@ function changeColor(hue, sat, lit) {
   setTimeout(function(){
     $("#svg path").css({"transition" : ""});
   },100);
-}
-
-//**************************** TICK ****************************//
-function tick(network) {
-  for (var i = 0; i < network.nodes.length; i++)  {
-    var n = network.nodes[i];
-
-    if (n.moveable)  {
-
-      // Get the velocity towards the center
-      var velocity = [n.center[0] - n.pos[0], n.center[1] - n.pos[1]];
-      velocity[0] *= 0.1;
-      velocity[1] *= 0.1;
-
-      var velocityFromMouse = [];
-
-      if (mouseX && mouseY) {
-
-        // Map the distance to the mouse to a multiplier (the closer the bigger)
-        var distanceFromMouse = utils.getDistance(n.pos[0], n.pos[1], mouseX, mouseY);
-        distanceFromMouse = Math.min(distanceFromMouse, 150);
-        var multiplier = utils.map(distanceFromMouse, 0, 150, -0.9, 0);
-
-        // Get the velocity from the mouse
-        velocityFromMouse = [mouseX - n.center[0], mouseY - n.center[1]];
-
-        // Add it to the usual velocity
-        velocity[0] += velocityFromMouse[0] * multiplier;
-        velocity[1] += velocityFromMouse[1] * multiplier;
-      }
-
-      // Give the node a new position
-      n.pos[0] += velocity[0];
-      n.pos[1] += velocity[1];
-    }
-  }
-
-  // Move nodes to their new position
-  network.moveNodes();
 }
 
 //**************************** Get the Colors ****************************//
@@ -163,7 +118,7 @@ function getColors()  {
       (doc && doc.clientTop  || body && body.clientTop  || 0 );
     }
 
-    mouseX = event.pageX;
-    mouseY = event.pageY;
+    window.mouseX = event.pageX;
+    window.mouseY = event.pageY;
   }
 })();
