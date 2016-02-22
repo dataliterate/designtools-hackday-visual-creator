@@ -1,7 +1,7 @@
-var $ = require('jquery');
+var $ = require("jquery");
 var utils = require("./utilities.js");
-var Snap = require('snapsvg');
-var cdt2d = require('cdt2d');
+var Snap = require("snapsvg");
+var cdt2d = require("cdt2d");
 
 //**************************** Network ****************************//
 module.exports = function(targetSelector, color)  {
@@ -229,7 +229,7 @@ module.exports = function(targetSelector, color)  {
       "L",
       diamondPointsBig[0][0],
       diamondPointsBig[0][1]
-    ].join(' ');
+    ].join(" ");
 
     var diamondSVGBig = this.paper.path(diamondPathBig).attr({"stroke" : "black"});
 
@@ -254,7 +254,7 @@ module.exports = function(targetSelector, color)  {
     for (var i = 0; i < nodes.length; i++) {
       var point = [
         nodes[i].pos[0],
-        nodes[i].pos[1],
+        nodes[i].pos[1]
       ];
 
       points.push(point);
@@ -267,7 +267,7 @@ module.exports = function(targetSelector, color)  {
 
     var edges = [];
 
-    for (var i = 0; i < result.length; i++)  {
+    for (i = 0; i < result.length; i++)  {
       // Let each node know which nodes it is connected to
       nodes[result[i][0]].connectedTo.push(result[i][1]);
       nodes[result[i][1]].connectedTo.push(result[i][2]);
@@ -289,7 +289,7 @@ module.exports = function(targetSelector, color)  {
 
     // Throw out duplicate edges
     edges.sort();
-    var i = edges.length;
+    i = edges.length;
     while(i-- && i > 0)  {
       if (edges[i][0] === edges[i-1][0] && edges[i][1] === edges[i-1][1]) {
         edges.splice(i, 1);
@@ -297,7 +297,7 @@ module.exports = function(targetSelector, color)  {
     }
 
     // Tell each node which edges are connected to it
-    for (var i = 0; i < edges.length; i++)  {
+    for (i = 0; i < edges.length; i++)  {
       nodes[edges[i][0]].edges.push(i);
       nodes[edges[i][1]].edges.push(i);
     }
@@ -321,13 +321,13 @@ module.exports = function(targetSelector, color)  {
         "L",
         nodes[edges[i][1]].pos[0],
         nodes[edges[i][1]].pos[1]
-      ].join(' ');
+      ].join(" ");
 
-        this.paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1], "class" : "edge"});
+      this.paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1], "class" : "edge"});
     }
 
     // Draw nodes
-    for (var i = 0; i < nodes.length; i++) {
+    for (i = 0; i < nodes.length; i++) {
       this.paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node", "node" : i});
     }
   };
@@ -401,7 +401,7 @@ module.exports = function(targetSelector, color)  {
       "L",
       diamondPoints[7][0],
       diamondPoints[7][1]
-    ].join(' ');
+    ].join(" ");
 
     this.paper.path(diamondPath).attr({"stroke" : "white", "class" : "diamond"});
 
@@ -420,10 +420,10 @@ module.exports = function(targetSelector, color)  {
     this.currentEdge = 1;
     this.lastEdge = 0;
 
-     this.move = function() {
+    this.move = function() {
       // Finde a new edge from the node that is not the current one
       while (self.currentEdge == self.lastEdge)  {
-        currentEdgePos = Math.floor(utils.getRandom(0, self.nodes[self.currentNode].edges.length));
+        var currentEdgePos = Math.floor(utils.getRandom(0, self.nodes[self.currentNode].edges.length));
         self.currentEdge = self.nodes[self.currentNode].edges[currentEdgePos];
       }
 
@@ -469,12 +469,12 @@ module.exports = function(targetSelector, color)  {
         "L",
         this.nodes[this.edges[i][1]].pos[0],
         this.nodes[this.edges[i][1]].pos[1]
-      ].join(' ');
+      ].join(" ");
 
       Snap.select(".edge[edge='" + i + "']").attr({"path" : p });
     }
 
-    for (var i = 0; i < this.nodes.length; i++) {
+    for (i = 0; i < this.nodes.length; i++) {
       Snap.select(".node[node='" + i + "']").attr({"cx" : this.nodes[i].pos[0], "cy" : this.nodes[i].pos[1] });
     }
   };

@@ -1,5 +1,5 @@
 //**************************** Includes ****************************//
-var $ = require('jquery');
+var $ = require("jquery");
 var utils = require("./utilities.js");
 var Network = require("./Network.js");
 
@@ -11,6 +11,8 @@ var lit = 0;
 
 var mouseX = undefined;
 var mouseY = undefined;
+
+var mainNetwork;
 
 //**************************** Run ****************************//
 $(document).ready(function()  {
@@ -34,19 +36,19 @@ $(document).ready(function()  {
   $("#sat").val(sat);
   $("#lit").val(lit);
 
-  $("#hue").on('input', function () {
+  $("#hue").on("input", function () {
     hue = $(this).val();
     changeColor(hue, sat, lit);
     $(".hue-num").text(hue + "°");
   });
 
-  $("#sat").on('input', function () {
+  $("#sat").on("input", function () {
     sat = $(this).val();
     changeColor(hue, sat, lit);
     $(".sat-num").text(sat + "%");
   });
 
-  $("#lit").on('input', function () {
+  $("#lit").on("input", function () {
     lit = $(this).val();
     changeColor(hue, sat, lit);
     $(".lit-num").text(lit + "%");
@@ -62,7 +64,7 @@ function changeColor(hue, sat, lit) {
   var color = utils.hslToHex([
     {
       light: "hsl(" + hue + "," + sat + "," + (litLight) + ")",
-      regular: "hsl(" + hue + "," + sat + "," + (lit) + ")",
+      regular: "hsl(" + hue + "," + sat + "," + (lit) + ")"
     }
   ]);
 
@@ -76,7 +78,7 @@ function changeColor(hue, sat, lit) {
 //**************************** TICK ****************************//
 function tick(network) {
   for (var i = 0; i < network.nodes.length; i++)  {
-    n = network.nodes[i];
+    var n = network.nodes[i];
 
     if (n.moveable)  {
 
@@ -141,7 +143,7 @@ function getColors()  {
 (function() {
   document.onmousemove = handleMouseMove;
   function handleMouseMove(event) {
-    var dot, eventDoc, doc, body, pageX, pageY;
+    var eventDoc, doc, body;
 
     event = event || window.event; // IE-ism
 
