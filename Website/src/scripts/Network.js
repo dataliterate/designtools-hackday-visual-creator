@@ -22,20 +22,28 @@ module.exports = function(targetSelector, color)  {
     var nodes = [
       {
         "pos" : [-200, -200],
+        "center" : [-200, -200],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [this.width + 200, -200],
+        "center" : [this.width + 200, -200],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [this.width + 200, this.height + 200],
+        "center" : [this.width + 200, this.height + 200],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [-200, this.height + 200],
+        "center" : [-200, this.height + 200],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }
     ];
 
@@ -103,32 +111,46 @@ module.exports = function(targetSelector, color)  {
     var nodes = [
       {
         "pos" : [diamondScaled[0][0], diamondScaled[0][1]],
+        "center" : [diamondScaled[0][0], diamondScaled[0][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [diamondScaled[1][0], diamondScaled[1][1]],
+        "center" : [diamondScaled[1][0], diamondScaled[1][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [diamondScaled[2][0], diamondScaled[2][1]],
+        "center" : [diamondScaled[2][0], diamondScaled[2][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [diamondScaled[3][0], diamondScaled[3][1]],
+        "center" : [diamondScaled[3][0], diamondScaled[3][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [diamondScaled[4][0], diamondScaled[4][1]],
+        "center" : [diamondScaled[4][0], diamondScaled[4][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [diamondScaled[5][0], diamondScaled[5][1]],
+        "center" : [diamondScaled[5][0], diamondScaled[5][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }, {
         "pos" : [diamondScaled[6][0], diamondScaled[6][1]],
+        "center" : [diamondScaled[6][0], diamondScaled[6][1]],
         "connectedTo" : [],
-        "edges" : []
+        "edges" : [],
+        "moveable" : false
       }
     ];
 
@@ -159,13 +181,19 @@ module.exports = function(targetSelector, color)  {
 
     for (var x = 0; x < nodesX; x++)  {
       for (var y = 0; y < nodesY; y++)  {
+
         var node = {
           "pos" : [
             (x * nodesSpace) + utils.getRandomInt(-nodesSpaceRandom, nodesSpaceRandom),
             (y * nodesSpace) + utils.getRandomInt(-nodesSpaceRandom, nodesSpaceRandom)
           ],
+          "center" : [
+            (x * nodesSpace) + utils.getRandomInt(-nodesSpaceRandom, nodesSpaceRandom),
+            (y * nodesSpace) + utils.getRandomInt(-nodesSpaceRandom, nodesSpaceRandom)
+          ],
           "connectedTo" : [],
-          "edges" : []
+          "edges" : [],
+          "moveable" : true
         };
 
         randomNodes.push(node);
@@ -300,7 +328,7 @@ module.exports = function(targetSelector, color)  {
 
     // Draw nodes
     for (var i = 0; i < nodes.length; i++) {
-      this.paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node"});
+      this.paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node", "node" : i});
     }
   };
 
@@ -424,12 +452,33 @@ module.exports = function(targetSelector, color)  {
     this.interval = setInterval(this.move, 100, self);
   };
 
+  //**************************** Change Color ****************************//
   this.changeColor = function(color) {
     $(this.target).css({"background-color" : color.regular});
     Snap.selectAll(this.target + " .node").attr({"fill" : color.regular});
     this.paper.attr({"stroke" : color.light});
-    console.log(color.light);
   };
+
+  //**************************** Move nodes to updated position ****************************//
+  this.moveNodes = function() {
+    for (var i = 0; i < this.edges.length; i++)  {
+      var p = [
+        "M",
+        this.nodes[this.edges[i][0]].pos[0],
+        this.nodes[this.edges[i][0]].pos[1],
+        "L",
+        this.nodes[this.edges[i][1]].pos[0],
+        this.nodes[this.edges[i][1]].pos[1]
+      ].join(' ');
+
+      Snap.select(".edge[edge='" + i + "']").attr({"path" : p });
+    }
+
+    for (var i = 0; i < this.nodes.length; i++) {
+      Snap.select(".node[node='" + i + "']").attr({"cx" : this.nodes[i].pos[0], "cy" : this.nodes[i].pos[1] });
+    }
+  };
+
 
   //**************************** RUN FOR IT ****************************//
   this.nodes = [];

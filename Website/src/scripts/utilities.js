@@ -19,6 +19,13 @@ exports.hslToHex = function(colors) {
       colors[i][shade] = tinycolor(colors[i][shade]).toHexString();
     }
   }
-
   return colors;
+};
+
+exports.map = function(in_num, in_min, in_max, out_min, out_max) {
+  return (in_num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+};
+
+exports.getDistance = function(x1, y1, x2, y2)  {
+  return Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
 };

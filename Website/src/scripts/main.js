@@ -9,6 +9,9 @@ var hue = 0;
 var sat = 0;
 var lit = 0;
 
+var mouseX = undefined;
+var mouseY = undefined;
+
 //**************************** Run ****************************//
 $(document).ready(function()  {
 
@@ -18,8 +21,6 @@ $(document).ready(function()  {
   hue = color.regular.split(",")[0].split("(")[1];
   sat = color.regular.split(",")[1];
   lit = color.regular.split(",")[2].split(")")[0];
-
-  console.log(lit);
 
   color = utils.hslToHex([color])[0];
   mainNetwork = new Network("#svg", color);
@@ -45,11 +46,15 @@ $(document).ready(function()  {
     $(".sat-num").text(sat + "%");
   });
 
-    $("#lit").on('input', function () {
-      lit = $(this).val();
-      changeColor(hue, sat, lit);
-      $(".lit-num").text(lit + "%");
-    });
+  $("#lit").on('input', function () {
+    lit = $(this).val();
+    changeColor(hue, sat, lit);
+    $(".lit-num").text(lit + "%");
+  });
+
+
+  setInterval(tick, 40, mainNetwork);
+
 });
 
 function changeColor(hue, sat, lit) {
@@ -68,7 +73,44 @@ function changeColor(hue, sat, lit) {
   },100);
 }
 
+//**************************** TICK ****************************//
+function tick(network) {
+  for (var i = 0; i < network.nodes.length; i++)  {
+    n = network.nodes[i];
 
+    if (n.moveable)  {
+
+      // Get the velocity towards the center
+      var velocity = [n.center[0] - n.pos[0], n.center[1] - n.pos[1]];
+      velocity[0] *= 0.1;
+      velocity[1] *= 0.1;
+
+      var velocityFromMouse = [];
+
+      if (mouseX && mouseY) {
+
+        // Map the distance to the mouse to a multiplier (the closer the bigger)
+        var distanceFromMouse = utils.getDistance(n.pos[0], n.pos[1], mouseX, mouseY);
+        distanceFromMouse = Math.min(distanceFromMouse, 150);
+        var multiplier = utils.map(distanceFromMouse, 0, 150, -0.9, 0);
+
+        // Get the velocity from the mouse
+        velocityFromMouse = [mouseX - n.center[0], mouseY - n.center[1]];
+
+        // Add it to the usual velocity
+        velocity[0] += velocityFromMouse[0] * multiplier;
+        velocity[1] += velocityFromMouse[1] * multiplier;
+      }
+
+      // Give the node a new position
+      n.pos[0] += velocity[0];
+      n.pos[1] += velocity[1];
+    }
+  }
+
+  // Move nodes to their new position
+  network.moveNodes();
+}
 
 //**************************** Get the Colors ****************************//
 function getColors()  {
@@ -94,3 +136,32 @@ function getColors()  {
 
   return colors;
 }
+
+//**************************** Get Mouse Position ****************************//
+(function() {
+  document.onmousemove = handleMouseMove;
+  function handleMouseMove(event) {
+    var dot, eventDoc, doc, body, pageX, pageY;
+
+    event = event || window.event; // IE-ism
+
+    // If pageX/Y aren't available and clientX/Y are,
+    // calculate pageX/Y - logic taken from jQuery.
+    // (This is to support old IE)
+    if (event.pageX === null && event.clientX !== null) {
+      eventDoc = (event.target && event.target.ownerDocument) || document;
+      doc = eventDoc.documentElement;
+      body = eventDoc.body;
+
+      event.pageX = event.clientX +
+      (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+      (doc && doc.clientLeft || body && body.clientLeft || 0);
+      event.pageY = event.clientY +
+      (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+      (doc && doc.clientTop  || body && body.clientTop  || 0 );
+    }
+
+    mouseX = event.pageX;
+    mouseY = event.pageY;
+  }
+})();
