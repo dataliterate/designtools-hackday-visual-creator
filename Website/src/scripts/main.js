@@ -62,7 +62,7 @@ function changeColor(hue, sat, lit) {
   ]);
 
   $("#svg path").css({"transition" : "none"});
-  mainNetwork.changeColor(mainNetwork.paper, mainNetwork.target, color[0]);
+  mainNetwork.changeColor(color[0]);
   setTimeout(function(){
     $("#svg path").css({"transition" : ""});
   },100);

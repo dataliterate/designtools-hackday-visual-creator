@@ -18,22 +18,22 @@ module.exports = function(targetSelector, color)  {
 
 
   //**************************** Create Boundaries ****************************//
-  this.createBoundaries = function(width, height)  {
+  this.createBoundaries = function()  {
     var nodes = [
       {
         "pos" : [-200, -200],
         "connectedTo" : [],
         "edges" : []
       }, {
-        "pos" : [width + 200, -200],
+        "pos" : [this.width + 200, -200],
         "connectedTo" : [],
         "edges" : []
       }, {
-        "pos" : [width + 200, height + 200],
+        "pos" : [this.width + 200, this.height + 200],
         "connectedTo" : [],
         "edges" : []
       }, {
-        "pos" : [-200, height + 200],
+        "pos" : [-200, this.height + 200],
         "connectedTo" : [],
         "edges" : []
       }
@@ -53,7 +53,7 @@ module.exports = function(targetSelector, color)  {
   };
 
   //**************************** Create Boundaries ****************************//
-  this.createDiamond = function(width, height) {
+  this.createDiamond = function() {
     var diamond = [
       [0, 0.26],
       [0.12, 0.1],
@@ -69,6 +69,9 @@ module.exports = function(targetSelector, color)  {
       [0.20, 0.42],
       [0.80, 0.42]
     ];
+
+    var width = this.width;
+    var height = this.height;
 
     var diamondScaled = diamond.map(function(point) {
       var size = Math.min(width/3, height/2);
@@ -148,10 +151,10 @@ module.exports = function(targetSelector, color)  {
   };
 
   //**************************** Create Random Nodes ****************************//
-  this.createRandomNodes = function(width, height, nodesSpace) {
+  this.createRandomNodes = function(nodesSpace) {
     var randomNodes = [];
-    var nodesX = width / nodesSpace + 1;
-    var nodesY = height / nodesSpace + 1;
+    var nodesX = this.width / nodesSpace + 1;
+    var nodesY = this.height / nodesSpace + 1;
     var nodesSpaceRandom = nodesSpace / 3;
 
     for (var x = 0; x < nodesX; x++)  {
@@ -172,7 +175,7 @@ module.exports = function(targetSelector, color)  {
   };
 
   //**************************** Delete the random nodes that are to close to the diamond ****************************//
-  this.throwOutRandomNodesInDiamond = function(randomNodes, diamondPointsBig, paper) {
+  this.throwOutRandomNodesInDiamond = function(randomNodes, diamondPointsBig) {
     var diamondPathBig = [
       "M",
       diamondPointsBig[0][0],
@@ -200,7 +203,7 @@ module.exports = function(targetSelector, color)  {
       diamondPointsBig[0][1]
     ].join(' ');
 
-    var diamondSVGBig = paper.path(diamondPathBig).attr({"stroke" : "black"});
+    var diamondSVGBig = this.paper.path(diamondPathBig).attr({"stroke" : "black"});
 
     // Delete nodes that are inside the diamond
     var i = randomNodes.length;
@@ -278,7 +281,7 @@ module.exports = function(targetSelector, color)  {
   };
 
   //**************************** Draw the network ****************************//
-  this.drawNetwork = function(nodes, edges, paper, color) {
+  this.drawNetwork = function(nodes, edges, color) {
 
     // Draw edges
     for (var i = 0; i < edges.length; i++)  {
@@ -292,17 +295,17 @@ module.exports = function(targetSelector, color)  {
         nodes[edges[i][1]].pos[1]
       ].join(' ');
 
-        paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1], "class" : "edge"});
+        this.paper.path(p).attr({"edge" : i, "from" : edges[i][0], "to" : edges[i][1], "class" : "edge"});
     }
 
     // Draw nodes
     for (var i = 0; i < nodes.length; i++) {
-      paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node"});
+      this.paper.circle(nodes[i].pos[0], nodes[i].pos[1], 8).attr({"fill" : color, "stroke" : "none", "class" : "node"});
     }
   };
 
   //**************************** Draw the diamond ****************************//
-  this.drawDiamond = function(diamondPoints, paper, colorVerylight, colorRegular) {
+  this.drawDiamond = function(diamondPoints, colorRegular) {
     var diamondPath = [
       "M",
       diamondPoints[0][0],
@@ -372,16 +375,16 @@ module.exports = function(targetSelector, color)  {
       diamondPoints[7][1]
     ].join(' ');
 
-    paper.path(diamondPath).attr({"stroke" : "white", "class" : "diamond"});
+    this.paper.path(diamondPath).attr({"stroke" : "white", "class" : "diamond"});
 
     for (var i = 0; i < diamondPoints.length; i++) {
-      paper.circle(diamondPoints[i][0], diamondPoints[i][1], 7).attr({"fill" : colorRegular, "stroke" : "none", "class" : "node"});
+      this.paper.circle(diamondPoints[i][0], diamondPoints[i][1], 7).attr({"fill" : colorRegular, "stroke" : "none", "class" : "node"});
     }
 
   };
 
-  //**************************** Draw lights ****************************//
-  this.Light = function(nodes, paper, target, color)  {
+  //**************************** Create Lights ****************************//
+  this.Light = function(nodes, paper, target)  {
     var self = this;
     this.nodes = nodes;
     this.currentNode = Math.floor(utils.getRandom(0, nodes.length));
@@ -421,11 +424,10 @@ module.exports = function(targetSelector, color)  {
     this.interval = setInterval(this.move, 100, self);
   };
 
-
-  this.changeColor = function(paper, target, color) {
-    $(target).css({"background-color" : color.regular});
-    Snap.selectAll(target + " .node").attr({"fill" : color.regular});
-    paper.attr({"stroke" : color.light});
+  this.changeColor = function(color) {
+    $(this.target).css({"background-color" : color.regular});
+    Snap.selectAll(this.target + " .node").attr({"fill" : color.regular});
+    this.paper.attr({"stroke" : color.light});
     console.log(color.light);
   };
 
@@ -434,12 +436,12 @@ module.exports = function(targetSelector, color)  {
   this.hole = [];
 
   // Create the boundaries
-  this.boundaries = this.createBoundaries(this.width, this.height);
+  this.boundaries = this.createBoundaries();
   this.nodes = this.nodes.concat(this.boundaries.nodes);
   this.hole = this.hole.concat(this.boundaries.hole);
 
   // Create the Diamond
-  this.diamond = this.createDiamond(this.width, this.height);
+  this.diamond = this.createDiamond();
   this.diamondPoints = this.diamond.diamondPoints;
   this.diamondPointsBig = this.diamond.diamondPointsBig;
 
@@ -452,8 +454,8 @@ module.exports = function(targetSelector, color)  {
   }));
 
   // Create the random nodes (and make sure they are not withing the diamond)
-  this.randomNodes = this.createRandomNodes(this.width, this.height, 100);
-  this.randomNodes = this.throwOutRandomNodesInDiamond(this.randomNodes, this.diamondPointsBig, this.paper);
+  this.randomNodes = this.createRandomNodes(100);
+  this.randomNodes = this.throwOutRandomNodesInDiamond(this.randomNodes, this.diamondPointsBig);
   this.nodes = this.nodes.concat(this.randomNodes);
 
   // Calculate the network
@@ -462,10 +464,10 @@ module.exports = function(targetSelector, color)  {
   this.edges = this.network.edges;
 
   // Draw the network
-  this.drawNetwork(this.nodes, this.edges, this.paper, this.color.regular);
+  this.drawNetwork(this.nodes, this.edges, this.color.regular);
 
   // Draw the diamond
-  this.drawDiamond(this.diamondPoints, this.paper, this.color.verylight, this.color.regular);
+  this.drawDiamond(this.diamondPoints, this.color.regular);
 
   // Create lights
   this.lights = [];
