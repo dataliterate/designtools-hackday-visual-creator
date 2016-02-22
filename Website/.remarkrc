@@ -1,7 +1,0 @@
-{
-  "plugins": {
-    "lint": {
-      "no-duplicate-headings": false
-    }
-  }
-}
