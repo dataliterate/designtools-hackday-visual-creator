@@ -5,6 +5,12 @@ html {
   font-size: 10px;
 }
 
+@media (max-width: 800px) {
+  html  {
+    font-size: 8px;
+  }
+}
+
 $unit_small: 2rem;
 $unit: 5rem;
 $unit_big: 8rem;
@@ -139,8 +145,9 @@ input[type=range]::-ms-thumb {
   top: $unit;
   bottom: $unit * 2.5;
   left: $unit;
+  right: $unit;
 
-  width: $unit_big * 5.3;
+  max-width: $unit_big * 5.3;
 
   transform: translateX(0);
   opacity: 1;
@@ -179,45 +186,3 @@ input[type=range]::-ms-thumb {
     cursor: pointer;
   }
 }
-
-//
-// .ui {
-//   position: fixed;
-//   bottom: 2rem;
-//   left: 2rem;
-//   right: 2rem;
-//
-//   max-width: 600px;
-//   margin: 0 auto;
-//
-//   padding: 2rem;
-//   border-radius: .5rem;
-//   background-color: #fff;
-//   color: #000;
-//
-//
-//   opacity: .4;
-//   transform: translateY(90%);
-//   transition: all .4s;
-//
-//   &:hover {
-//     opacity: 1;
-//     transform: translateY(0%);
-//   }
-//
-//   input {
-//     width: 100%;
-//   }
-//
-//   p {
-//     font-weight: bold;
-//     font-size: 1.2rem;
-//     text-align: center;
-//     margin-top: 1.5rem;
-//     margin-bottom: .5rem;
-//
-//     &:first-child {
-//       margin-top: 0;
-//     }
-//   }
-// }
