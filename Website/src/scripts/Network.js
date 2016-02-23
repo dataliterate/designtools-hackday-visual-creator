@@ -500,7 +500,7 @@ module.exports = function(targetSelector, color)  {
 
   //**************************** Init the reaction to mouse ****************************//
   this.initReactToMouse = function() {
-    setInterval(this.reactToMouse, 40, this);
+    setInterval(this.reactToMouse, 80, this);
   };
 
 
