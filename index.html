@@ -4,7 +4,7 @@
 <head>
 
   <!-- ************* Meta ************* -->
-  <title>Designtools Hackday</title>
+  <title>Designtools Hackday – Visual Creator</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -29,16 +29,26 @@
 
     <svg id="svg"></svg>
 
-    <div class="ui">
-      <p>Hue: <span class="hue-num"></span></p>
-      <input id="hue" type="range" name="hue" value="150" step="1" min="0" max="360">
+    <div class="content">
+      <div class="title">
+        <h1><a href="http://designtoolshackday.com"><strong>Designtools Hackday</strong><br>Sketch Extensions</a></h1>
 
-      <p>Saturation: <span class="sat-num"></span></p>
-      <input id="sat" type="range" name="hue" value="50" step="1" min="30" max="100">
+        <p><a href="http://designtoolshackday.com">Fri, April 8th – Sat, April 9th 2016 at precious design studio in Hamburg</a></p>
+      </div>
 
-      <p>Lightness: <span class="lit-num"></span></p>
-      <input id="lit" type="range" name="lit" value="50" step="1" min="30" max="80">
+      <div class="ui">
+        <label>Hue: <span class="hue-value">10</span></label>
+        <input id="hue" type="range" name="hue" value="150" step="1" min="0" max="360">
+
+        <label>Saturation <span class="sat-value">10</span></label>
+        <input id="sat" type="range" name="sat" value="50" step="1" min="40" max="100">
+
+        <label>Lightness <span class="light-value">10</span></label>
+        <input id="light" type="range" name="light" value="50" step="1" min="30" max="80">
+      </div>
     </div>
+
+    <div class="hide">[Hide Sliders]</div>
 
 </body>
 

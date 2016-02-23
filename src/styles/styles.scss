@@ -2,12 +2,128 @@
 
 html {
   height: 100%;
-  font-size: 12px;
+  font-size: 10px;
 }
+
+$unit_small: 2rem;
+$unit: 5rem;
+$unit_big: 8rem;
 
 body {
   height: 100%;
 }
+
+//**************************** Style ****************************//
+
+body  {
+  font-size: 2rem;
+  font-family: 'DIN Next W01 Rounded', 'DIN Round Pro', sans-serif;
+  font-weight: 300;
+}
+
+.title  {
+  h1  {
+    font-size: 2.3em;
+    font-weight: 300;
+    line-height: 1.1em;
+    color: white;
+  }
+
+  strong  {
+    color: black;
+  }
+
+  p {
+    margin-top: $unit_small;
+  }
+}
+
+strong  {
+  font-weight: 500;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.ui {
+  label {
+    font-weight: 500;
+  }
+
+  span  {
+    font-weight: 300;
+  }
+}
+
+input[type='range'] {
+  background-color: hsla(0,0,0,.3);
+  cursor: pointer;
+  border-radius: .5rem;
+  margin-top: 1rem;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.1);
+  height: .5rem;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.5rem;
+  margin-top: -.3rem;
+  width: 1.5rem;
+  border-radius: .75rem;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 1.5rem;
+  margin-top: -.3rem;
+  width: 1.5rem;
+  border-radius: .75rem;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  -webkit-appearance: none;
+  height: 1.5rem;
+  margin-top: -.3rem;
+  width: 1.5rem;
+  border-radius: .75rem;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+//**************************** Structure ****************************//
+
 
 #svg {
   width: 100%;
@@ -18,43 +134,90 @@ body {
   }
 }
 
-.ui {
+.content  {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  right: 2rem;
+  top: $unit;
+  bottom: $unit * 2.5;
+  left: $unit;
 
-  max-width: 600px;
-  margin: 0 auto;
+  width: $unit_big * 5.3;
 
-  padding: 2rem;
-  border-radius: .5rem;
-  background-color: #fff;
-  color: #000;
-  font-family: sans-serif;
+  transform: translateX(0);
+  opacity: 1;
 
-  opacity: .4;
-  transform: translateY(90%);
-  transition: all .4s;
+  transition: all .3s;
 
-  &:hover {
-    opacity: 1;
-    transform: translateY(0%);
+  &.is-hidden {
+    transform: translateX(-100%);
+    opacity: 0;
   }
+}
+
+.ui {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   input {
+    display: block;
+    margin-bottom: 2rem;
     width: 100%;
-  }
 
-  p {
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-bottom: .5rem;
-
-    &:first-child {
-      margin-top: 0;
+    &:last-child  {
+      margin-bottom: 0;
     }
   }
 }
+
+.hide {
+  position: fixed;
+  bottom: $unit;
+  left: $unit;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//
+// .ui {
+//   position: fixed;
+//   bottom: 2rem;
+//   left: 2rem;
+//   right: 2rem;
+//
+//   max-width: 600px;
+//   margin: 0 auto;
+//
+//   padding: 2rem;
+//   border-radius: .5rem;
+//   background-color: #fff;
+//   color: #000;
+//
+//
+//   opacity: .4;
+//   transform: translateY(90%);
+//   transition: all .4s;
+//
+//   &:hover {
+//     opacity: 1;
+//     transform: translateY(0%);
+//   }
+//
+//   input {
+//     width: 100%;
+//   }
+//
+//   p {
+//     font-weight: bold;
+//     font-size: 1.2rem;
+//     text-align: center;
+//     margin-top: 1.5rem;
+//     margin-bottom: .5rem;
+//
+//     &:first-child {
+//       margin-top: 0;
+//     }
+//   }
+// }
