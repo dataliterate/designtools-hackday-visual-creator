@@ -245,7 +245,7 @@ module.exports = function(targetSelector, color)  {
     var i = this.randomNodes.length;
 
     while (i--)  {
-      if (Snap.path.isPointInside(diamondSVGBig, this.randomNodes[i].pos[0],    this.randomNodes[i].pos[1])) {
+      if (Snap.path.isPointInside(diamondSVGBig, this.randomNodes[i].center[0],    this.randomNodes[i].center[1])) {
         this.randomNodes.splice(i, 1);
       }
     }
