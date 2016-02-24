@@ -3,6 +3,8 @@
 html {
   height: 100%;
   font-size: 10px;
+  width: 100%;
+  overflow: hidden;
 }
 
 @media (max-width: 800px) {
@@ -29,7 +31,7 @@ body  {
 
 .title  {
   h1  {
-    font-size: 2.3em;
+    font-size: 1.8em;
     font-weight: 300;
     line-height: 1.1em;
     color: white;
@@ -39,9 +41,7 @@ body  {
     color: black;
   }
 
-  p {
-    margin-top: $unit_small;
-  }
+  margin-bottom: 4rem;
 }
 
 strong  {
@@ -149,6 +149,11 @@ input[type=range]::-ms-thumb {
 
 
 #svg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
 
@@ -164,7 +169,7 @@ input[type=range]::-ms-thumb {
   left: $unit;
   right: $unit;
 
-  max-width: $unit_big * 5.3;
+  max-width: $unit_big * 5;
 
   transform: translateX(0);
   opacity: 1;

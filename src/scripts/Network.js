@@ -90,10 +90,17 @@ module.exports = function(targetSelector, color)  {
     var height = this.height;
 
     var diamondScaled = diamond.map(function(point) {
-      var size = Math.min(width/3, height/2);
-      size = Math.min(size, 800);
-      var positionX = width / 2 - size/2;
-      var positionY = height / 2 - size/2 - size/8;
+      if (width > 800)  {
+        var size = Math.min(width/3, height/2);
+        size = Math.min(size, 800);
+        var positionX = width / 2 - size/2;
+        var positionY = height / 2 - size/2 - size/8;
+      } else {
+        var size = Math.min(width/1.3, height/2);
+        size = Math.min(size, 600);
+        var positionX = width / 2 - size/2;
+        var positionY = height / 2 - size/2 - size/8;
+      }
 
       var pointNew = [];
       pointNew[0] = point[0] * size + positionX;
@@ -107,6 +114,18 @@ module.exports = function(targetSelector, color)  {
       size = Math.min(size, 1000);
       var positionX = width / 2 - size/2;
       var positionY = height / 2 - size/2 - size/8 + size/22;
+
+      if (width > 800)  {
+        var size = Math.min(width/2.3, height/1.7);
+        size = Math.min(size, 1000);
+        var positionX = width / 2 - size/2;
+        var positionY = height / 2 - size/2 - size/8 + size/22;
+      } else {
+        var size = Math.min(width/0.6, height/1.7);
+        size = Math.min(size, 8000);
+        var positionX = width / 2 - size/2;
+        var positionY = height / 2 - size/2 - size/8 + size/22;
+      }
 
       var pointNew = [];
       pointNew[0] = point[0] * size + positionX;
