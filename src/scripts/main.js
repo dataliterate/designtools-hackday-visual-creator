@@ -32,7 +32,7 @@ $(document).ready(function()  {
   light = color.regular.split(",")[2].split(")")[0];
 
   color = utils.hslToHex([color])[0];
-  mainNetwork = new Network("#svg", color);
+  mainNetwork = new Network("#svg", color, 1000, true);
 
   changeColor(hue, sat, light);
   $(".hue-value").text(hue + "°");

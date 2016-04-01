@@ -9,16 +9,19 @@ var utils = require("./utilities.js");
 var Snap = require("snapsvg");
 var cdt2d = require("cdt2d");
 
-module.exports = function(targetSelector, color)  {
+module.exports = function(targetSelector, color, centerWidth, isSimple)  {
   this.target = targetSelector;
   this.paper = Snap(targetSelector);
   this.height = $(this.target).outerHeight();
   this.width = $(this.target).outerWidth();
+  this.centerWidth = centerWidth;
 
   this.color = color;
   this.gap = 12;
   this.diamondGap = 8;
   this.nodeSpacing = 100;
+
+  this.isSimple = isSimple;
 
   // Setup drawing paper
   $(this.target).css({"background-color" : this.color.regular});
@@ -68,7 +71,7 @@ module.exports = function(targetSelector, color)  {
     };
   };
 
-  //**************************** Create Boundaries ****************************//
+  //**************************** Create Diamond ****************************//
   this.createDiamond = function() {
     var diamond = [
       [0, 0.26],
@@ -88,18 +91,17 @@ module.exports = function(targetSelector, color)  {
 
     var width = this.width;
     var height = this.height;
+    var centerWidth = this.centerWidth;
 
     var diamondScaled = diamond.map(function(point) {
-      if (width > 800)  {
-        var size = Math.min(width/3, height/2);
-        size = Math.min(size, 800);
-        var positionX = width / 2 - size/2;
-        var positionY = height / 2 - size/2 - size/8;
+      if (width >= 800) {
+        var size = (centerWidth/12)*4;
+        var positionX = (width - centerWidth) / 2 + centerWidth - size;
+        var positionY = (height - size) / 2;
       } else {
-        var size = Math.min(width/1.3, height/2);
-        size = Math.min(size, 600);
-        var positionX = width / 2 - size/2;
-        var positionY = height / 2 - size/2 - size/8;
+        var size = (centerWidth/12)*8;
+        var positionX = centerWidth / 2 - size / 2;
+        var positionY = (height - size) / 2;
       }
 
       var pointNew = [];
@@ -110,21 +112,14 @@ module.exports = function(targetSelector, color)  {
     });
 
     var diamondScaledBig = diamond.map(function(point) {
-      var size = Math.min(width/2.3, height/1.7);
-      size = Math.min(size, 1000);
-      var positionX = width / 2 - size/2;
-      var positionY = height / 2 - size/2 - size/8 + size/22;
-
-      if (width > 800)  {
-        var size = Math.min(width/2.3, height/1.7);
-        size = Math.min(size, 1000);
-        var positionX = width / 2 - size/2;
-        var positionY = height / 2 - size/2 - size/8 + size/22;
+      if (width >= 800) {
+        var size = (centerWidth/12)*4 + (centerWidth/12);
+        var positionX = (width - centerWidth) / 2 + centerWidth - size + (centerWidth/24);
+        var positionY = (height - size) / 2 + (centerWidth/100);
       } else {
-        var size = Math.min(width/0.6, height/1.7);
-        size = Math.min(size, 8000);
-        var positionX = width / 2 - size/2;
-        var positionY = height / 2 - size/2 - size/8 + size/22;
+        var size = (centerWidth/12)*10;
+        var positionX = centerWidth / 2 - size / 2;
+        var positionY = (height - size) / 2 + (centerWidth/100);
       }
 
       var pointNew = [];
@@ -344,7 +339,7 @@ module.exports = function(targetSelector, color)  {
       // Get the end and start point of the edge
       var start = [this.nodes[this.edges[i][0]].pos[0], this.nodes[this.edges[i][0]].pos[1]];
       var end = [this.nodes[this.edges[i][1]].pos[0],
-              this.nodes[this.edges[i][1]].pos[1]];
+      this.nodes[this.edges[i][1]].pos[1]];
 
       // Express the edge as a vector and normalize it
       var vector = [end[0] - start[0], end[1] - start[1]];
@@ -536,20 +531,29 @@ module.exports = function(targetSelector, color)  {
   this.hole = this.hole.concat(this.boundaries.hole);
 
   // Create the Diamond
-  this.diamond = this.createDiamond();
-  this.diamondPoints = this.diamond.diamondPoints;
-  this.diamondPointsBig = this.diamond.diamondPointsBig;
 
-  this.nodes = this.nodes.concat(this.diamond.nodes);
-  this.hole = this.hole.concat(this.diamond.hole.map(function(point) {
-    point[0] += 4;
-    point[1] += 4;
-    return point;
-  }));
+  if (!this.isSimple) {
+
+    this.diamond = this.createDiamond();
+    this.diamondPoints = this.diamond.diamondPoints;
+    this.diamondPointsBig = this.diamond.diamondPointsBig;
+
+    this.nodes = this.nodes.concat(this.diamond.nodes);
+    this.hole = this.hole.concat(this.diamond.hole.map(function(point) {
+      point[0] += 4;
+      point[1] += 4;
+      return point;
+    }));
+
+  };
 
   // Create the random nodes (and make sure they are not withing the diamond)
   this.randomNodes = this.createRandomNodes(this.nodeSpacing);
-  this.randomNodes = this.throwOutRandomNodesInDiamond();
+
+  if (!this.isSimple) {
+    this.randomNodes = this.throwOutRandomNodesInDiamond();
+  };
+
   this.nodes = this.nodes.concat(this.randomNodes);
 
   // Calculate the network
@@ -561,14 +565,20 @@ module.exports = function(targetSelector, color)  {
   this.drawNetwork();
 
   // Draw the diamond
-  this.drawDiamond();
+  if (!this.isSimple) {
+    this.drawDiamond();
+  };
 
   // Create lights
-  this.lights = [];
-  for (var i = 0; i < 8; i++) {
-    var light = new this.Light(this.nodes, this.paper, this.target, this.color.verylight);
-    this.lights.push(light);
-  }
+  if (!this.isSimple) {
 
-  this.initReactToMouse();
+    this.lights = [];
+    for (var i = 0; i < 6; i++) {
+      var light = new this.Light(this.nodes, this.paper, this.target, this.color.verylight);
+      this.lights.push(light);
+    }
+    this.initReactToMouse();
+
+  };
+
 };
