@@ -72,11 +72,11 @@ function changeColor(hue, sat, light) {
     }
   ]);
 
-  $("#svg path").css({"transition" : "none"});
+  // $("#svg path").css({"transition" : "none"});
   mainNetwork.changeColor(color[0]);
-  setTimeout(function(){
-    $("#svg path").css({"transition" : ""});
-  },100);
+  // setTimeout(function(){
+  //   $("#svg path").css({"transition" : ""});
+  // },100);
 }
 
 //**************************** Get the Colors ****************************//
