@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "cdt2d": "^1.0.0",
-    "jquery": "^2.2.0",
+    "jquery": "~> 3.0.0",
     "snapsvg": "github:sethvincent/Snap.svg#a34b8af69b",
     "tinycolor2": "^1.3.0"
   },
